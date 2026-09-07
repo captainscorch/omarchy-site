@@ -43,9 +43,10 @@ try {
       workers_dev: true,
       ...(flags.includes('--domain')
         ? {
-            routes: [domain, ...(locales[code].aliases ?? [])].map(
-              (hostname) => ({ pattern: hostname, custom_domain: true }),
-            ),
+            routes: [domain].map((hostname) => ({
+              pattern: hostname,
+              custom_domain: true,
+            })),
           }
         : {}),
       assets: {

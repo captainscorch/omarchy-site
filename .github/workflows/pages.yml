@@ -32,6 +32,11 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
+        with:
+          ruby-version: '3.4'
+      - run: gem install kramdown kramdown-parser-gfm --no-document
+      - run: bin/build-news
       - run: npm run build
       - run: npm run parity
       - uses: actions/upload-pages-artifact@v5
@@ -39,27 +44,6 @@ jobs:
         with:
           path: dist/client
           include-hidden-files: true
-
-  translations:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-      - uses: actions/setup-python@v7
-        with:
-          python-version: '3.13'
-      - run: npm ci
-      - run: npm run build:translations
-      - uses: actions/upload-artifact@v6
-        with:
-          name: translated-sites
-          path: dist/
 
   deploy:
     if: github.event_name != 'pull_request'

@@ -1,6 +1,6 @@
 # Translations
 
-One site, shared components, separate static builds. English remains the source of truth. The country editions cover all Omarchy domains in INWX. Their manual links currently lead to the canonical English manual.
+One site, shared components, separate static builds. English remains the source of truth. Each of the 30 languages has one primary address, either a registered domain or a language subdomain under omarchy.org. English uses omarchy.org. Manual links currently lead to the canonical English manual.
 
 ## Build and preview
 
@@ -8,7 +8,7 @@ One site, shared components, separate static builds. English remains the source 
 npm run build                 # English → dist/client
 npm run build:locale -- da    # Danish → dist/da
 npm run dev:da               # Danish preview on port 3114
-npm run check:translations   # Missing UI messages and stale/missing news
+npm run check:translations   # Validate UI/prose and completed translations
 ```
 
 Each output contains its own domain, CNAME, canonical URLs, language metadata, language links, and news RSS feed. It can be uploaded to any static host. The existing English deployment stays unchanged. Domain registration/DNS and hosting for omarchy.dk must be configured separately; building does not publish anything.
@@ -25,13 +25,13 @@ Only register a language when its main pages and news are ready. The registry al
 
 ## Updating copy
 
-Use `t('English source copy')` for shared interface text and add each language's version to its message catalogue. New English news requires a translated HTML file and metadata entry in every registered translation. Changed news is flagged by `check:translations`; review and update the translation **before** replacing its source hash. The check never silently approves a changed article.
+Use `t('English source copy')` for shared interface text and add each language's version to its message catalogue. English news publishes independently. Missing or outdated translations use the current English title and body until the background workflow fills them in. Run `npm run news:pending` to see the queue, or `npm run check:translations -- --strict-news` to require complete, current news translations. Never update a source hash without translating or reviewing the new source.
 
 Imported main-page prose uses exact HTML keys. When editing its English source, update the corresponding block key and translation. The automated check covers UI calls, catalogue coverage, prose links, and news freshness; prose wording, dynamic labels, accessibility attributes, and layout still need editorial review.
 
-Third-party post quotes, video titles, event names, theme names, and product names retain their original wording. Danish uses Danish dates and number formatting, while funding amounts remain in USD.
+Video titles, event names, theme names, and product names retain their original wording. Quoted article prose is translated with its attribution preserved. Each language uses its own date and number formatting, while funding amounts remain in USD. Write those amounts with an explicit currency — `1,000,000 USD`, not `$1,000,000` — because a bare `$` is the local currency sign in several countries.
 
-The translation CI job builds every registered non-English language and uploads the output as an artifact. It does not deploy to regional domains. Adding another language does not require another fork, layout, or CI job.
+The separate `translate-news.yml` workflow runs after a successful English deployment, on manual dispatch, and hourly to retry unfinished translations. Adding a language to the registry includes it automatically.
 
 ## Publish to Cloudflare
 
@@ -45,43 +45,89 @@ CLOUDFLARE_API_TOKEN="$(secret-tool lookup service cloudflare account api-token)
 
 The token stays in the child process environment and is never written to the repository. Use `--dry-run` to validate deployment configuration without uploading.
 
-To connect the registered domain, create its Cloudflare zone, preserve any existing DNS records, and set the assigned nameservers through the registrar. Once the zone is active, run the same deployment command with `--domain`. It attaches the domain and any `aliases` from the locale registry, and Cloudflare provisions HTTPS. This is a separate step from deploying the workers.dev preview.
+To connect the registered domain, create its Cloudflare zone, preserve any existing DNS records, and set the assigned nameservers through the registrar. Once the zone is active, run the same deployment command with `--domain`. It attaches the language’s primary domain from the locale registry, and Cloudflare provisions HTTPS. This is a separate step from deploying the workers.dev preview.
 
-Regional deployments are currently explicit commands. CI builds translation artifacts but does not publish them. To automate publishing after merge, add a deployment job using a Cloudflare API token and account ID stored in GitHub Actions secrets.
+Language publishing is automatic through `translate-news.yml`. Manual deployment remains available for recovery.
 
-## Country domains and fallback addresses
+## One primary address per language
 
-Every country edition has two permanent addresses: its national domain (for example `omarchy.dk`) and a fallback under the global domain (`dk.omarchy.org`). The fallback is an additional Worker custom domain, not a redirect to the national domain. Both host the same files independently; canonical and Open Graph URLs retain the national domain. Register both the fallback and `www` hostname in the locale's `aliases` list so subsequent deployments retain them.
+The locale registry defines one public address for each language. The language menu, canonical URLs, Open Graph metadata, alternate-language links and deployment all use that same address. Do not register additional addresses or regional English editions. English has a single global edition at omarchy.org.
 
-Use country codes for fallback hostnames: `dk`, `jp`, `gr`, and so on. These need not match language codes (`da`, `ja`, `el`). Cloudflare custom domains handle routing and TLS directly; no manual apex CNAME is needed. The national domains use their assigned Cloudflare nameservers.
+The language menu shows colored country flags and preserves the current pathname, query and fragment when the destination has a translation. Otherwise it opens that language’s home page. Labels use native names, and English uses a globe. The `flag` field supplies the two-letter country code when needed. Arabic declares `direction: "rtl"`.
 
-The language menu shows colored country flags and preserves the current pathname, query and fragment when the destination has a translation. Otherwise it opens that edition's home page. Language labels use their native spelling. The global English edition uses a globe.
+Cloudflare custom domains handle routing and TLS directly. Registered national domains use their assigned Cloudflare nameservers; language subdomains use the omarchy.org zone. Verify HTTPS and the page language before publishing a new primary address.
 
-The Singapore, New Zealand and US editions use `contentLocale: "en"` to reuse the English source, while retaining their own domains and regional formatting. Arabic declares `direction: "rtl"`.
+| Language         | Primary address                          |
+| ---------------- | ---------------------------------------- |
+| English          | [omarchy.org](https://omarchy.org)       |
+| Dansk            | [omarchy.dk](https://omarchy.dk)         |
+| العربية          | [omarchy.ae](https://omarchy.ae)         |
+| Suomi            | [omarchy.fi](https://omarchy.fi)         |
+| Français         | [omarchy.fr](https://omarchy.fr)         |
+| Ελληνικά         | [omarchy.gr](https://omarchy.gr)         |
+| Magyar           | [omarchy.hu](https://omarchy.hu)         |
+| हिन्दी           | [omarchy.in](https://omarchy.in)         |
+| Íslenska         | [omarchy.is](https://omarchy.is)         |
+| 日本語           | [omarchy.jp](https://omarchy.jp)         |
+| 한국어           | [omarchy.kr](https://omarchy.kr)         |
+| Español (México) | [omarchy.mx](https://omarchy.mx)         |
+| Filipino         | [omarchy.ph](https://omarchy.ph)         |
+| Português        | [omarchy.pt](https://omarchy.pt)         |
+| Svenska          | [omarchy.se](https://omarchy.se)         |
+| Türkçe           | [omarchy.tr](https://omarchy.tr)         |
+| Tiếng Việt       | [vi.omarchy.org](https://vi.omarchy.org) |
+| اردو             | [ur.omarchy.org](https://ur.omarchy.org) |
+| বাংলা            | [bn.omarchy.org](https://bn.omarchy.org) |
+| Català           | [ca.omarchy.org](https://ca.omarchy.org) |
+| සිංහල            | [si.omarchy.org](https://si.omarchy.org) |
+| தமிழ்            | [ta.omarchy.org](https://ta.omarchy.org) |
+| ไทย              | [th.omarchy.org](https://th.omarchy.org) |
+| Oʻzbekcha        | [uz.omarchy.org](https://uz.omarchy.org) |
+| Italiano         | [it.omarchy.org](https://it.omarchy.org) |
+| 简体中文         | [zh.omarchy.org](https://zh.omarchy.org) |
+| Polski           | [pl.omarchy.org](https://pl.omarchy.org) |
+| Lietuvių         | [lt.omarchy.org](https://lt.omarchy.org) |
+| Gaeilge          | [ga.omarchy.org](https://ga.omarchy.org) |
+| Nederlands | [nl.omarchy.org](https://nl.omarchy.org) |
 
-### Country editions
+## Pointing a new domain to a language site
 
-| Language         | National domain                  | Fallback                                 |
-| ---------------- | -------------------------------- | ---------------------------------------- |
-| Dansk            | [omarchy.dk](https://omarchy.dk) | [dk.omarchy.org](https://dk.omarchy.org) |
-| العربية          | [omarchy.ae](https://omarchy.ae) | [ae.omarchy.org](https://ae.omarchy.org) |
-| Suomi            | [omarchy.fi](https://omarchy.fi) | [fi.omarchy.org](https://fi.omarchy.org) |
-| Français         | [omarchy.fr](https://omarchy.fr) | [fr.omarchy.org](https://fr.omarchy.org) |
-| Ελληνικά         | [omarchy.gr](https://omarchy.gr) | [gr.omarchy.org](https://gr.omarchy.org) |
-| Magyar           | [omarchy.hu](https://omarchy.hu) | [hu.omarchy.org](https://hu.omarchy.org) |
-| हिन्दी           | [omarchy.in](https://omarchy.in) | [in.omarchy.org](https://in.omarchy.org) |
-| Íslenska         | [omarchy.is](https://omarchy.is) | [is.omarchy.org](https://is.omarchy.org) |
-| 日本語           | [omarchy.jp](https://omarchy.jp) | [jp.omarchy.org](https://jp.omarchy.org) |
-| 한국어           | [omarchy.kr](https://omarchy.kr) | [kr.omarchy.org](https://kr.omarchy.org) |
-| Español (México) | [omarchy.mx](https://omarchy.mx) | [mx.omarchy.org](https://mx.omarchy.org) |
-| English (NZ)     | [omarchy.nz](https://omarchy.nz) | [nz.omarchy.org](https://nz.omarchy.org) |
-| Filipino         | [omarchy.ph](https://omarchy.ph) | [ph.omarchy.org](https://ph.omarchy.org) |
-| Português        | [omarchy.pt](https://omarchy.pt) | [pt.omarchy.org](https://pt.omarchy.org) |
-| Svenska          | [omarchy.se](https://omarchy.se) | [se.omarchy.org](https://se.omarchy.org) |
-| English (SG)     | [omarchy.sg](https://omarchy.sg) | [sg.omarchy.org](https://sg.omarchy.org) |
-| Türkçe           | [omarchy.tr](https://omarchy.tr) | [tr.omarchy.org](https://tr.omarchy.org) |
-| English (US)     | [omarchy.us](https://omarchy.us) | [us.omarchy.org](https://us.omarchy.org) |
+A domain owner can provide the new primary address for a language while keeping ownership and registration with their current registrar. The Omarchy maintainer hosts the site in the project’s Cloudflare account. No registrar transfer is required.
+
+### Domain owner
+
+1. Tell the maintainer the exact domain and intended language. Disclose any existing website, email service or other use of the domain so its DNS records can be preserved.
+2. Keep the domain registered and renewed in your own account. Give the maintainer the existing DNS records, including MX and TXT records used for email and verification. Do not send registrar passwords.
+3. Wait for the maintainer to confirm that the Cloudflare zone contains the required records and to supply the nameservers assigned to that specific zone. Enter those exact nameservers at your registrar. Do not copy nameservers from another domain or guess their values.
+4. Confirm with the maintainer that the website and any existing email service work after the change.
+
+### Omarchy maintainer
+
+1. Add the domain as a zone in the project’s Cloudflare account. Review the imported DNS records with the owner and preserve all required records, particularly MX and TXT records. Resolve any conflicting website records deliberately; do not discard unrelated records. Coordinate any existing DNSSEC configuration before changing nameservers.
+2. Send the owner the nameservers Cloudflare assigned to this zone. After the owner applies them, wait for Cloudflare to mark the zone active.
+3. Prepare the replacement `domain` value for the existing language in `src/i18n/locales.json`. Keep one primary address; do not add an alias or another edition. Build with `npm run build:locale -- <code>`, then deploy with `npm run deploy:locale -- <code> --domain`. This attaches the Worker custom domain and lets Cloudflare provision HTTPS. Do not publish the registry change to master until the new address is verified.
+4. Verify DNS resolution, a valid HTTPS certificate, the intended language on the home page and a news article deep link. Check that the article path survives navigation and that canonical URLs identify the new primary address. Check existing email DNS with the owner as well.
+5. Publish the registry change and rebuild/deploy the sites so the language selector and alternate-language links use the verified new address. Once the switch is confirmed, remove the previous Worker custom-domain attachment and retire the previous address rather than retaining it as an alias.
+
+A DNS CNAME pointing an arbitrary domain at an omarchy.org hostname is not sufficient: it does not configure Worker routing or provide a certificate for that domain. Use the zone and Worker custom-domain handoff above. Nameserver changes affect the whole domain, so preserving existing DNS records is part of the handoff, not an optional cleanup step.
 
 ## Translating the manual next
 
 Keep English chapters in the existing source repository. Store translations separately using stable chapter paths and section IDs, with a hash of the English source beside each translated section. Preserve executable commands, filenames and the interface's actual menu labels. When the source changes, require review of only the affected sections. Until a section is translated, render its English source with a clear language notice; never leave installation instructions missing. Enable a locale's `manual` flag only after the translated routing, fallback and source-freshness checks are implemented.
+
+## Publish English first, translate afterward
+
+Push an English Markdown story under `content/news/` to master. The Pages workflow renders the Markdown and deploys English without waiting for any translations. After that deployment succeeds, the news workflow regenerates the same English source, finds missing or stale translations by source hash, and invokes Muse with up to eight concurrent translations. Each result must preserve the HTML structure and all links before it is saved. Successful translations are committed by the Actions bot; failed items remain queued for the hourly retry. A newer English edit invalidates older translations automatically.
+
+The workflow builds and deploys language sites in a separate six-runner matrix. A model failure does not roll back English publication. If a language deployment fails, the hourly run retries deployment; you can also rerun failed jobs or manually dispatch the workflow. Concurrent runs are serialized; if a rebase conflicts with an editorial change, no forced push is attempted and the next run starts from current master.
+
+Configure these repository Actions settings:
+
+- Secret `MUSE_API_KEY`: Muse provider key.
+- Secret `CLOUDFLARE_DEPLOY_API_TOKEN`: Workers deployment and custom-domain permissions; separate from the analytics token.
+- Variable `CLOUDFLARE_ACCOUNT_ID`: Cloudflare account hosting the language Workers.
+- Optional variable `MUSE_MODEL`: defaults to `muse-spark-1.3-contributor`.
+
+The repository must allow GitHub Actions to write commits to master (or grant the bot the appropriate ruleset bypass). The worker only runs on trusted master after the English workflow, never on pull-request code. Bot translation commits do not trigger the English workflow again; the same translation run publishes its own results.
+
+For a local catch-up, run `bin/build-news`, `npm run port`, then `npm run news:translate`. The Muse CLI must be installed and authenticated. `npm run news:pending` reports the remaining queue without invoking a model. Use `npm run check:translations -- --strict-news` after a full catch-up.

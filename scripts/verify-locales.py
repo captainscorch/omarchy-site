@@ -52,13 +52,16 @@ for code in codes:
         assert page.meta.get('og:locale') == locale['ogLocale'], (code, path, 'og:locale')
         for other, destination in registry.items():
             assert any(link.get('hreflang') == other and link.get('href') == destination['domain'] + path for link in page.links), (code, path, 'alternate', other)
+        for destination in registry.values():
+            navigation = destination['domain']
+            assert navigation + path in page.anchors, (code, path, 'footer language destination', navigation)
         if not locale['manual']:
             assert not any(href == '/manual' or href.startswith(('/manual/', '/manual#', '/manual?')) for href in page.anchors), (code, path, 'local manual link')
     feed = ET.parse(output / 'news/rss.xml').getroot().find('channel')
-    assert feed is not None and feed.findtext('link') == domain + '/news/', (code, 'RSS channel')
+    assert feed is not None and feed.findtext('link', '').rstrip('/') == domain + '/news', (code, 'RSS channel')
     items = feed.findall('item')
     assert len(items) == len(posts), (code, 'RSS count')
     for item, post in zip(items, posts):
-        assert item.findtext('link') == domain + post['path'], (code, 'RSS link')
+        assert item.findtext('link', '').rstrip('/') == (domain + post['path']).rstrip('/'), (code, 'RSS link')
         assert parsedate_to_datetime(item.findtext('pubDate')) == datetime.fromisoformat(post['date']), (code, 'RSS date')
     print(f'{code}: {len(paths)} pages and {len(items)} RSS articles verified')

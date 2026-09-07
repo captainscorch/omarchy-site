@@ -1,0 +1,170 @@
+name: Translate news and deploy languages
+
+on:
+  workflow_run:
+    workflows: [Check and deploy site]
+    types: [completed]
+    branches: [master]
+  workflow_dispatch:
+  schedule:
+    # Retry unfinished translations without delaying English publication.
+    - cron: '41 * * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: translate-news
+  cancel-in-progress: false
+
+jobs:
+  translate:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event != 'pull_request' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+      actions: read
+    outputs:
+      revision: ${{ steps.commit.outputs.revision }}
+      locales: ${{ steps.commit.outputs.locales }}
+      deploy: ${{ steps.commit.outputs.deploy }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: master
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: npm ci
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
+        with:
+          ruby-version: '3.4'
+      - run: gem install kramdown kramdown-parser-gfm --no-document
+      - run: bin/build-news
+      - run: npm run port
+      - name: Find pending stories
+        id: pending
+        run: |
+          node scripts/check-translations.mjs --pending-news > "$RUNNER_TEMP/pending-news.json"
+          echo "count=$(python3 -c 'import json,sys; print(len(json.load(open(sys.argv[1]))))' "$RUNNER_TEMP/pending-news.json")" >> "$GITHUB_OUTPUT"
+      - name: Install Muse
+        if: steps.pending.outputs.count != '0'
+        run: |
+          mkdir -p "$RUNNER_TEMP/muse-bin"
+          curl --fail --silent --show-error --location https://api.meta.ai/muse-launcher.sh --output "$RUNNER_TEMP/muse-bin/muse"
+          echo "21c66e550a71cac2e4af081cc33d10bec81993d0043ec492761fc449e6c440f6  $RUNNER_TEMP/muse-bin/muse" | sha256sum --check
+          chmod +x "$RUNNER_TEMP/muse-bin/muse"
+          MUSE_LAUNCHER_INSTALL=1 "$RUNNER_TEMP/muse-bin/muse"
+          echo "MUSE_NO_AUTO_UPDATE=1" >> "$GITHUB_ENV"
+          echo "$RUNNER_TEMP/muse-bin" >> "$GITHUB_PATH"
+      - name: Configure Muse
+        if: steps.pending.outputs.count != '0'
+        env:
+          MUSE_API_KEY: ${{ secrets.MUSE_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          key = os.environ.get('MUSE_API_KEY')
+          if not key:
+              raise SystemExit('Add the MUSE_API_KEY Actions secret to enable automatic translations.')
+          config = Path.home() / '.config/muse'
+          config.mkdir(parents=True, exist_ok=True)
+          auth = config / 'auth.json'
+          auth.write_text(json.dumps({'schema_version': 1, 'providers': {'meta': {'api_key': key}}}))
+          auth.chmod(0o600)
+          PY
+      - name: Translate pending stories in parallel
+        if: steps.pending.outputs.count != '0'
+        id: generate
+        continue-on-error: true
+        env:
+          MUSE_MODEL: ${{ vars.MUSE_MODEL || 'muse-spark-1.3-contributor' }}
+        run: python3 scripts/translate-news.py --concurrency 8
+      - name: Validate completed translations
+        run: npm run check:translations
+      - name: Commit completed translations
+        id: commit
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add src/i18n/*/news.json src/i18n/*/news/ news src/data/news-posts.json
+          changed=false
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Translate published news'
+            # Discard only generated data from npm run port before rebasing.
+            git restore src/data public/data
+            git pull --rebase origin master
+            git push origin HEAD:master
+            changed=true
+          fi
+          echo "revision=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          locales=$(node --input-type=module -e 'import l from "./src/i18n/locales.json" with {type:"json"}; console.log(JSON.stringify(Object.keys(l).filter(k=>k!=="en")))')
+          echo "locales=$locales" >> "$GITHUB_OUTPUT"
+          previous=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/translate-news.yml/runs?status=completed&per_page=1" --jq '(.workflow_runs[0].conclusion // "none")')
+          if [ "$changed" = true ] || [ "$EVENT_NAME" != schedule ] || [ "$previous" != success ]; then
+            echo 'deploy=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Report translations still pending
+        if: always()
+        run: |
+          node scripts/check-translations.mjs --pending-news > "$RUNNER_TEMP/pending-news.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          pending = json.loads((Path(os.environ['RUNNER_TEMP']) / 'pending-news.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as out:
+              out.write(f'Pending news translations: **{len(pending)}**.\n\n')
+              out.write('English remains available while translations catch up. Unfinished work is retried hourly.\n')
+          PY
+      - name: Remove Muse credentials
+        if: always()
+        run: rm -f "$HOME/.config/muse/auth.json"
+
+  deploy:
+    needs: translate
+    if: needs.translate.outputs.deploy == 'true'
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        locale: ${{ fromJSON(needs.translate.outputs.locales) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.translate.outputs.revision }}
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: npm ci
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
+        with:
+          ruby-version: '3.4'
+      - run: gem install kramdown kramdown-parser-gfm --no-document
+      - run: bin/build-news
+      - run: npm run build:locale -- "${{ matrix.locale }}"
+      - run: python3 scripts/verify-locales.py "${{ matrix.locale }}"
+      - name: Publish language site
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_DEPLOY_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: npm run deploy:locale -- "${{ matrix.locale }}" --domain

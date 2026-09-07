@@ -8,9 +8,59 @@ const json = (file) => JSON.parse(readFileSync(file, 'utf8'))
 const posts = json('src/data/news-posts.json')
 const messages = new Set()
 const problems = []
-const selected = process.argv.slice(2)
+const args = process.argv.slice(2)
+const strictNews = args.includes('--strict-news')
+const pendingNews = args.includes('--pending-news')
+const selected = args.filter(
+  (arg) => !['--strict-news', '--pending-news'].includes(arg),
+)
+const sourceHash = (post) =>
+  createHash('sha256').update(`${post.title}\n${post.html}`).digest('hex')
+const articleStatus = (contentLocale, news, post) => {
+  const translated = news[post.slug]
+  if (
+    !translated?.title?.trim() ||
+    !existsSync(`src/i18n/${contentLocale}/news/${post.slug}.html`) ||
+    !readFileSync(
+      `src/i18n/${contentLocale}/news/${post.slug}.html`,
+      'utf8',
+    ).trim()
+  )
+    return 'missing'
+  if (translated.sourceHash !== sourceHash(post)) return 'stale'
+  return null
+}
 for (const code of selected) {
   if (!Object.hasOwn(locales, code)) problems.push(`Unknown locale: ${code}`)
+}
+// Queue inspection is independent of UI validation and writes only JSON to stdout.
+if (pendingNews) {
+  if (problems.length) {
+    console.error(problems.join('\n'))
+    process.exit(1)
+  }
+  const pending = []
+  const seen = new Set()
+  for (const [code, locale] of Object.entries(locales)) {
+    if (selected.length && !selected.includes(code)) continue
+    const contentLocale = locale.contentLocale ?? code
+    if (contentLocale === 'en' || seen.has(contentLocale)) continue
+    seen.add(contentLocale)
+    const file = `src/i18n/${contentLocale}/news.json`
+    const news = existsSync(file) ? json(file) : {}
+    for (const post of posts) {
+      const reason = articleStatus(contentLocale, news, post)
+      if (reason)
+        pending.push({
+          locale: contentLocale,
+          slug: post.slug,
+          reason,
+          sourceHash: sourceHash(post),
+        })
+    }
+  }
+  console.log(JSON.stringify(pending, null, 2))
+  process.exit(0)
 }
 const referenceMessages = json('src/i18n/messages/da.json')
 const referenceBlocks = json('src/i18n/da/blocks.json')
@@ -62,13 +112,10 @@ for (const [code, locale] of Object.entries(locales)) {
   )
     problems.push(`Invalid or duplicate domain: ${locale.domain}`)
   domains.add(url.hostname)
-  for (const alias of locale.aliases ?? []) {
-    if (!/^[a-z0-9.-]+$/.test(alias) || domains.has(alias))
-      problems.push(`Invalid or duplicate alias: ${alias}`)
-    domains.add(alias)
-  }
   if (locale.direction && !['ltr', 'rtl'].includes(locale.direction))
     problems.push(`Invalid text direction: ${code}`)
+  if (locale.flag && !/^[A-Z]{2}$/.test(locale.flag))
+    problems.push(`Invalid flag country code: ${code}`)
   new Intl.DateTimeFormat(locale.formatLocale)
   const contentLocale = locale.contentLocale ?? code
   if (contentLocale === 'en' || (selected.length && !selected.includes(code)))
@@ -76,7 +123,6 @@ for (const [code, locale] of Object.entries(locales)) {
   const files = [
     `src/i18n/messages/${contentLocale}.json`,
     `src/i18n/${contentLocale}/blocks.json`,
-    `src/i18n/${contentLocale}/news.json`,
   ]
   const missing = files.filter((file) => !existsSync(file))
   if (missing.length) {
@@ -109,22 +155,18 @@ for (const [code, locale] of Object.entries(locales)) {
         )
     }
   }
-  const news = json(`src/i18n/${contentLocale}/news.json`)
+  const newsFile = `src/i18n/${contentLocale}/news.json`
+  const news = existsSync(newsFile) ? json(newsFile) : {}
   for (const post of posts) {
-    const translated = news[post.slug]
-    const hash = createHash('sha256')
-      .update(`${post.title}\n${post.html}`)
-      .digest('hex')
-    if (
-      !translated?.title ||
-      !existsSync(`src/i18n/${contentLocale}/news/${post.slug}.html`)
-    )
-      problems.push(`${code}: missing article: ${post.slug}`)
-    else if (translated.sourceHash !== hash)
-      problems.push(
-        `${code}: source article changed; review translation: ${post.slug}`,
-      )
-    else {
+    const status = articleStatus(contentLocale, news, post)
+    if (status) {
+      if (strictNews)
+        problems.push(
+          status === 'missing'
+            ? `${code}: missing article: ${post.slug}`
+            : `${code}: source article changed; review translation: ${post.slug}`,
+        )
+    } else {
       const html = readFileSync(
         `src/i18n/${contentLocale}/news/${post.slug}.html`,
         'utf8',

@@ -4,8 +4,8 @@ import { GlobeIcon } from '@/components/icons/GlobeIcon'
 import { Button } from '@/components/ui/button'
 import { hasTranslation, language, locale, locales, t } from '@/i18n/site'
 
-function flag(domain: string) {
-  const country = new URL(domain).hostname.split('.').at(-1)!
+function flag(domain: string, countryCode?: string) {
+  const country = countryCode ?? new URL(domain).hostname.split('.').at(-1)!
   return country.length === 2
     ? [...country.toUpperCase()]
         .map((letter) => String.fromCodePoint(127397 + letter.charCodeAt(0)))
@@ -15,17 +15,12 @@ function flag(domain: string) {
 
 export function LanguageSwitcher({ path }: { path: string }) {
   const [suffix, setSuffix] = useState('')
-  const [useFallback, setUseFallback] = useState(false)
 
   return (
     <Popover.Root
       onOpenChange={(open) => {
         if (open) {
           setSuffix(window.location.search + window.location.hash)
-          setUseFallback(
-            window.location.hostname === 'omarchy.org' ||
-              window.location.hostname.endsWith('.omarchy.org'),
-          )
         }
       }}
     >
@@ -55,11 +50,7 @@ export function LanguageSwitcher({ path }: { path: string }) {
             </Popover.Title>
             <nav aria-label={t('Language')}>
               {Object.entries(locales).map(([code, entry]) => {
-                const fallback = entry.aliases?.find((host) =>
-                  host.endsWith('.omarchy.org'),
-                )
-                const destination =
-                  useFallback && fallback ? `https://${fallback}` : entry.domain
+                const destination = entry.domain
                 return (
                   <a
                     key={code}
@@ -70,7 +61,7 @@ export function LanguageSwitcher({ path }: { path: string }) {
                     className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-ring aria-current:bg-surface-2"
                   >
                     <span aria-hidden="true" className="text-xl">
-                      {flag(entry.domain)}
+                      {flag(entry.domain, entry.flag)}
                     </span>
                     <span dir="auto">{entry.name}</span>
                   </a>

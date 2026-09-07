@@ -4,12 +4,12 @@ import registry from './locales.json' with { type: 'json' }
 export type Locale = {
   name: string
   domain: string
-  aliases?: string[]
   formatLocale: string
   ogLocale: string
   manual: boolean
   contentLocale?: string
   direction?: 'ltr' | 'rtl'
+  flag?: string
 }
 export const locales = registry as Record<string, Locale>
 export const language = import.meta.env?.PUBLIC_SITE_LOCALE || 'en'
