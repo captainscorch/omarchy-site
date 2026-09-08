@@ -695,7 +695,7 @@
     },
     {
       "id": "evt-XY4PE0sSpMrxY7t",
-      "title": "Omarchy NWA 001: Install Fest, Show & Tell, and Open Hacking",
+      "title": "Omarchy NWA 001: Install Fest, Show & Tell, Tips and Tricks",
       "url": "https://luma.com/fja5zgw2",
       "start": "2026-09-30T23:00:00.000Z",
       "end": "2026-10-01T00:00:00.000Z",
@@ -901,6 +901,21 @@
       "online": null,
       "geo": { "lat": 25.0329636, "lon": 121.56542680000001 },
       "hosts": ["Yung Chen"],
+      "cover": null
+    },
+    {
+      "id": "evt-6ArZ35PUhtwJGGU",
+      "title": "Omarchy Doha - Meet & Tinker",
+      "url": "https://luma.com/9s4dh3xs",
+      "start": "2026-10-21T16:00:00.000Z",
+      "end": "2026-10-21T18:00:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": "QA",
+      "online": null,
+      "geo": { "lat": 25.3108807, "lon": 51.5081812, "approximate": true },
+      "hosts": ["Omar Almagharebi", "Hadi Hamoud"],
       "cover": null
     },
     {
