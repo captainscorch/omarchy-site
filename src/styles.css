@@ -2267,6 +2267,13 @@ h6 {
   row-gap: var(--team-gap);
   transition: none;
 }
+@media (max-width: 1023px) {
+  .team-cluster[data-open] .team-faces {
+    flex-wrap: wrap;
+    row-gap: var(--team-gap);
+    transition: none;
+  }
+}
 .team-cluster[data-open] .team-face {
   transform: none;
 }
