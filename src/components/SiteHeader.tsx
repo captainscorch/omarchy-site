@@ -59,6 +59,9 @@ const navLinks = [
   { to: '/themes/', label: t('Themes') },
 ] as const
 
+/** The share of the hero scrolled past before the bar takes its surface. */
+const HERO_SETTLE = 0.25
+
 /** Observe the live hero sentinel; the header and blended labels share this state. */
 /** Choose the visible label layer before paint to prevent a navigation flash. */
 const useBeforePaint =
@@ -214,11 +217,15 @@ function useNavSurface(
     let height = 0
     /** The hero bottom in page coordinates. */
     let heroBottom = 0
+    /** How far into the hero the bar takes its surface. */
+    let heroSettle = 0
     /** The <main> the last survey read. The route changes before the DOM
      *  does, so the one mounted when this effect runs may be the outgoing
      *  page's; comparing identities is how the swap is noticed. */
     let surveyed: Element | null = null
     let heroUp = false
+    /** The hero's own ground, for the bar to wear once scrolled into it. */
+    let heroGround = 'var(--color-bg)'
     // Read hover state immediately on navigation; only mouse pointers have persistent hover.
     let hovering =
       window.matchMedia('(hover: hover)').matches && el.matches(':hover')
@@ -237,6 +244,8 @@ function useNavSurface(
       heroBottom = hero
         ? hero.getBoundingClientRect().bottom + window.scrollY
         : 0
+      heroGround = (hero && groundOf(hero)) ?? 'var(--color-bg)'
+      heroSettle = hero ? hero.getBoundingClientRect().height * HERO_SETTLE : 0
       height = el.getBoundingClientRect().height
       const sections = document.querySelectorAll<HTMLElement>(
         'main > section, main [data-ground]',
@@ -299,9 +308,23 @@ function useNavSurface(
       const bottom = groundAt(y + height)
       const whole = top && top === bottom ? top : null
       const here = phone.matches ? (top ?? bottom) : whole
+      // At the top the bar is bare and its labels blend with the field. A
+      // quarter of the way down, the field under the bar has grown too dense
+      // for that to read, so from there the bar wears the hero's ground and
+      // the labels come back solid, until the hero's bottom edge reaches it.
+      const inHero = heroUp && y >= heroSettle && y < heroBottom
+      // The hero's bottom edge crosses the bar the way edges do on a phone:
+      // hero ground above the edge, the next section's colour below it. Bare
+      // here would put solid labels straight on the densest part of the field.
+      const crossing = inHero && y + height > heroBottom
       let image = ''
       let fill = '1'
-      if (phone.matches && !sheetOpen && top !== bottom) {
+      if (crossing && !sheetOpen) {
+        const split = Math.round(heroBottom - y)
+        const below = bottom ? wash(bottom.colour) : 'transparent'
+        image = `linear-gradient(to bottom, ${wash(heroGround)} ${split}px, ${below} ${split}px)`
+        fill = '0'
+      } else if (phone.matches && !sheetOpen && top !== bottom) {
         const edge =
           top && bottom
             ? Math.min(top.bottom, bottom.top > y ? bottom.top : Infinity)
@@ -317,15 +340,21 @@ function useNavSurface(
       el.style.backgroundImage = image
       el.style.setProperty('--nav-fill', fill)
       if (here) el.style.setProperty('--nav-ground', here.colour)
+      else if (inHero) el.style.setProperty('--nav-ground', heroGround)
       else if (!heroUp) el.style.setProperty('--nav-ground', 'var(--color-bg)')
-      el.style.setProperty('--nav-surface', here || !heroUp ? '1' : '0')
+      el.style.setProperty(
+        '--nav-surface',
+        here || inHero || !heroUp ? '1' : '0',
+      )
       el.toggleAttribute(
         'data-nav-past-hero',
         !heroUp || (phone.matches ? y + height : y) >= heroBottom,
       )
       // The ghost holds the labels for as long as it is up, and hovering hands
       // them over early: it sits under the bar and cannot answer a pointer.
-      solid(sheetOpen || !blended || hovering)
+      // Once the bar has worn the hero's ground, the labels stay solid
+      // through the crossing at its bottom edge rather than blending again.
+      solid(sheetOpen || !blended || hovering || (heroUp && y >= heroSettle))
     }
 
     const hold = holding
