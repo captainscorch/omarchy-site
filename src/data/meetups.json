@@ -634,6 +634,21 @@
       "cover": null
     },
     {
+      "id": "evt-fHZpVL9NNBUoECw",
+      "title": "Omarchy Cleveland",
+      "url": "https://luma.com/gftf8538",
+      "start": "2026-09-24T22:00:00.000Z",
+      "end": "2026-09-24T23:00:00.000Z",
+      "timezone": null,
+      "address": "Nervous Dog Coffee Bar, Beachwood, La Place, 2101 Richmond Rd, Beachwood, OH 44122, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 41.5003889, "lon": -81.4965522 },
+      "hosts": ["Daniel"],
+      "cover": null
+    },
+    {
       "id": "evt-JFiVXWC7UZPmACF",
       "title": "Omarchy MeetUp CUBA🇨🇺",
       "url": "https://luma.com/7tumkkok",
