@@ -234,6 +234,9 @@ export function SearchPalette() {
       else close()
       return
     }
+    // Everything below drives the list from the field. A key pressed on the
+    // close button is the button's own: Enter there closes rather than opens.
+    if (event.target !== input.current) return
     if (
       (event.key === 'Backspace' || event.key === 'ArrowLeft') &&
       !query &&
@@ -291,10 +294,10 @@ export function SearchPalette() {
           {menu !== 'root' ? (
             <button
               type="button"
-              onPointerDown={(event) => {
-                event.preventDefault()
-                back()
-              }}
+              // Pressing keeps focus in the field; the click is what backs out, so
+              // an assistive click, which sends no pointer event, works the same.
+              onPointerDown={(event) => event.preventDefault()}
+              onClick={back}
               aria-label={t('Back')}
               tabIndex={-1}
               className="-ml-1 shrink-0 text-text-muted transition-colors duration-150 ease-out hover:text-text"
