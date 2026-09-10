@@ -1,4 +1,4 @@
-import { t } from '@/i18n/site'
+import { t } from '../i18n/site.ts'
 import type { SearchEntry } from '@/lib/content'
 
 /**
