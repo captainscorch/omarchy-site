@@ -21,7 +21,7 @@ export type MenuIcon =
   | 'install'
   | 'community'
   | 'foundation'
-  | 'about'
+  | 'project'
   | 'page'
   | 'meetups'
   | 'teams'
@@ -30,7 +30,7 @@ export type MenuIcon =
   | 'security'
   | 'patrons'
   | 'brand'
-  | 'server'
+  | 'merch'
 
 export type MenuItem = {
   id: string
@@ -69,9 +69,15 @@ const ITEMS: Array<MenuItem> = [
   },
   { id: 'community', label: t('Community'), icon: 'community' },
   { id: 'foundation', label: t('Foundation'), icon: 'foundation' },
-  { id: 'about', label: t('About'), icon: 'about' },
+  { id: 'project', label: t('Project'), icon: 'project' },
 
-  // Community
+  // Community, in the footer's order
+  {
+    id: 'community.discord',
+    label: 'Discord',
+    icon: 'discord',
+    href: 'https://discord.gg/tXFUdasqhY',
+  },
   {
     id: 'community.meetups',
     label: t('Meetups'),
@@ -86,25 +92,21 @@ const ITEMS: Array<MenuItem> = [
     to: '/workstations/',
   },
   {
-    id: 'community.discord',
-    label: 'Discord',
-    icon: 'discord',
-    href: 'https://discord.gg/tXFUdasqhY',
-  },
-  {
-    id: 'community.github',
-    label: 'GitHub',
-    icon: 'github',
-    href: 'https://github.com/omacom/omarchy',
+    id: 'community.doctrine',
+    label: t('Doctrine'),
+    icon: 'page',
+    to: '/doctrine/',
   },
 
-  // Foundation
+  // Foundation. Its first row is the footer's "About", which is the
+  // foundation page itself; the submenu header says which About that is.
   {
     id: 'foundation.about',
-    label: t('The Foundation'),
+    label: t('About'),
     icon: 'foundation',
     to: '/foundation/',
   },
+  { id: 'foundation.staff', label: t('Staff'), icon: 'teams', to: '/staff/' },
   {
     id: 'foundation.patrons',
     label: t('Patrons'),
@@ -117,40 +119,27 @@ const ITEMS: Array<MenuItem> = [
     icon: 'patrons',
     to: '/sponsorships/',
   },
-  { id: 'foundation.staff', label: t('Staff'), icon: 'teams', to: '/staff/' },
-  {
-    id: 'foundation.air',
-    label: t('Artists in Residence'),
-    icon: 'page',
-    to: '/air/',
-  },
+  { id: 'foundation.air', label: 'AIR', icon: 'page', to: '/air/' },
 
-  // About
+  // Project
   {
-    id: 'about.doctrine',
-    label: t('Doctrine'),
-    icon: 'page',
-    to: '/doctrine/',
-  },
-  { id: 'about.brand', label: t('Brand'), icon: 'brand', to: '/brand/' },
-  { id: 'about.omakub', label: 'Omakub', icon: 'page', to: '/omakub/' },
-  {
-    id: 'about.server',
-    label: t('Omarchy Server'),
-    icon: 'server',
-    to: '/server/',
-  },
-  {
-    id: 'about.potato',
-    label: t('Potato Hardware'),
-    icon: 'page',
-    to: '/potato/',
-  },
-  {
-    id: 'about.security',
+    id: 'project.security',
     label: t('Security'),
     icon: 'security',
     to: '/security/',
+  },
+  {
+    id: 'project.github',
+    label: 'GitHub',
+    icon: 'github',
+    href: 'https://github.com/omacom/omarchy',
+  },
+  { id: 'project.brand', label: t('Brand'), icon: 'brand', to: '/brand/' },
+  {
+    id: 'project.merch',
+    label: t('Merch'),
+    icon: 'merch',
+    href: 'https://supply.37signals.com/collections/omarchy',
   },
 ]
 

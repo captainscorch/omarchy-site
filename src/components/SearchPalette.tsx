@@ -2,9 +2,11 @@ import { t } from '@/i18n/site'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
 import {
+  AgentsIcon,
   BankIcon,
   BrushIcon,
   ChevronRightIcon,
+  CrossIcon,
   DiscordIcon,
   DownloadIcon,
   GithubIcon,
@@ -16,7 +18,7 @@ import {
   RssIcon,
   ShieldIcon,
   StarIcon,
-  UsbIcon,
+  StoreIcon,
 } from '@/components/icons'
 import type { SearchEntry } from '@/lib/content'
 import { getSearchIndex } from '@/lib/content'
@@ -53,9 +55,9 @@ const ICONS: Record<MenuIcon, typeof PageIcon> = {
   themes: PaletteIcon,
   plugins: PluginsIcon,
   install: DownloadIcon,
-  community: DiscordIcon,
+  community: AgentsIcon,
   foundation: BankIcon,
-  about: StarIcon,
+  project: StarIcon,
   page: PageIcon,
   meetups: MapPinIcon,
   teams: HeartIcon,
@@ -64,7 +66,7 @@ const ICONS: Record<MenuIcon, typeof PageIcon> = {
   security: ShieldIcon,
   patrons: HeartIcon,
   brand: BrushIcon,
-  server: UsbIcon,
+  merch: StoreIcon,
 }
 
 /** A row is either a menu entry or a search hit; both navigate on Enter. */
@@ -191,7 +193,7 @@ export function SearchPalette() {
       return
     }
     if (hit.kind === 'plugin') {
-      window.open(pluginUrl(hit.slug), '_blank', 'noopener')
+      window.location.href = pluginUrl(hit.slug)
       return
     }
     void navigate({ to: '/themes/' })
@@ -205,7 +207,7 @@ export function SearchPalette() {
     }
     close()
     if (item.href) {
-      window.open(item.href, '_blank', 'noopener')
+      window.location.href = item.href
       return
     }
     if (item.to) void navigate({ to: item.to, hash: item.hash })
@@ -312,6 +314,14 @@ export function SearchPalette() {
             enterKeyHint="go"
             className="min-w-0 flex-1 bg-transparent font-mono text-base text-text outline-none placeholder:text-text placeholder:opacity-60 [&::-webkit-search-cancel-button]:hidden"
           />
+          <button
+            type="button"
+            onClick={close}
+            aria-label={t('Close search')}
+            className="relative -mr-1 flex size-7 shrink-0 items-center justify-center text-text-muted transition-colors duration-150 ease-out hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            <CrossIcon className="size-4" />
+          </button>
         </div>
 
         <div className="sr-only" aria-live="polite">
