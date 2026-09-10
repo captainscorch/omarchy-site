@@ -61,6 +61,8 @@ const navLinks = [
 
 /** The share of the hero scrolled past before the bar takes its surface. */
 const HERO_SETTLE = 0.25
+/** The share of the hero the surface fades in over, from there on down. */
+const HERO_FADE = 0.1
 
 /** Observe the live hero sentinel; the header and blended labels share this state. */
 /** Choose the visible label layer before paint to prevent a navigation flash. */
@@ -217,8 +219,10 @@ function useNavSurface(
     let height = 0
     /** The hero bottom in page coordinates. */
     let heroBottom = 0
-    /** How far into the hero the bar takes its surface. */
+    /** How far into the hero the bar starts taking its surface. */
     let heroSettle = 0
+    /** How much further down it has all of it. */
+    let heroFade = 1
     /** The <main> the last survey read. The route changes before the DOM
      *  does, so the one mounted when this effect runs may be the outgoing
      *  page's; comparing identities is how the swap is noticed. */
@@ -245,7 +249,9 @@ function useNavSurface(
         ? hero.getBoundingClientRect().bottom + window.scrollY
         : 0
       heroGround = (hero && groundOf(hero)) ?? 'var(--color-bg)'
-      heroSettle = hero ? hero.getBoundingClientRect().height * HERO_SETTLE : 0
+      const heroHeight = hero ? hero.getBoundingClientRect().height : 0
+      heroSettle = heroHeight * HERO_SETTLE
+      heroFade = Math.max(1, heroHeight * HERO_FADE)
       height = el.getBoundingClientRect().height
       const sections = document.querySelectorAll<HTMLElement>(
         'main > section, main [data-ground]',
@@ -310,9 +316,13 @@ function useNavSurface(
       const here = phone.matches ? (top ?? bottom) : whole
       // At the top the bar is bare and its labels blend with the field. A
       // quarter of the way down, the field under the bar has grown too dense
-      // for that to read, so from there the bar wears the hero's ground and
-      // the labels come back solid, until the hero's bottom edge reaches it.
-      const inHero = heroUp && y >= heroSettle && y < heroBottom
+      // for that to read, so from there the bar fades in the hero's ground
+      // with the scroll and the labels come back solid as it starts: the
+      // ghost sits under the bar and would show through a half-filled one.
+      const settled = heroUp
+        ? Math.min(1, Math.max(0, (y - heroSettle) / heroFade))
+        : 0
+      const inHero = settled > 0 && y < heroBottom
       // The hero's bottom edge crosses the bar the way edges do on a phone:
       // hero ground above the edge, the next section's colour below it. Bare
       // here would put solid labels straight on the densest part of the field.
@@ -344,7 +354,7 @@ function useNavSurface(
       else if (!heroUp) el.style.setProperty('--nav-ground', 'var(--color-bg)')
       el.style.setProperty(
         '--nav-surface',
-        here || inHero || !heroUp ? '1' : '0',
+        here || !heroUp ? '1' : inHero ? String(settled) : '0',
       )
       el.toggleAttribute(
         'data-nav-past-hero',
@@ -354,7 +364,7 @@ function useNavSurface(
       // them over early: it sits under the bar and cannot answer a pointer.
       // Once the bar has worn the hero's ground, the labels stay solid
       // through the crossing at its bottom edge rather than blending again.
-      solid(sheetOpen || !blended || hovering || (heroUp && y >= heroSettle))
+      solid(sheetOpen || !blended || hovering || settled > 0)
     }
 
     const hold = holding
