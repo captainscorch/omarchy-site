@@ -51,37 +51,37 @@ export type MenuItem = {
 /** The whole tree, flat. `parentOf` reads the hierarchy back out of the ids. */
 const ITEMS: Array<MenuItem> = [
   // Root
-  { id: 'manual', label: 'Manual', icon: 'manual', provider: 'manual' },
-  { id: 'news', label: 'News', icon: 'news', provider: 'news' },
-  { id: 'themes', label: 'Themes', icon: 'themes', to: '/themes/' },
+  { id: 'manual', label: t('Manual'), icon: 'manual', provider: 'manual' },
+  { id: 'news', label: t('News'), icon: 'news', provider: 'news' },
+  { id: 'themes', label: t('Themes'), icon: 'themes', to: '/themes/' },
   {
     id: 'plugins',
-    label: 'Plugins',
+    label: t('Plugins'),
     icon: 'plugins',
     href: 'https://plugins.omarchy.org',
   },
   {
     id: 'install',
-    label: 'Install',
+    label: t('Install'),
     icon: 'install',
     to: '/',
     hash: 'install',
   },
-  { id: 'community', label: 'Community', icon: 'community' },
-  { id: 'foundation', label: 'Foundation', icon: 'foundation' },
-  { id: 'about', label: 'About', icon: 'about' },
+  { id: 'community', label: t('Community'), icon: 'community' },
+  { id: 'foundation', label: t('Foundation'), icon: 'foundation' },
+  { id: 'about', label: t('About'), icon: 'about' },
 
   // Community
   {
     id: 'community.meetups',
-    label: 'Meetups',
+    label: t('Meetups'),
     icon: 'meetups',
     to: '/meetups/',
   },
-  { id: 'community.teams', label: 'Teams', icon: 'teams', to: '/teams/' },
+  { id: 'community.teams', label: t('Teams'), icon: 'teams', to: '/teams/' },
   {
     id: 'community.workstations',
-    label: 'Workstations',
+    label: t('Workstations'),
     icon: 'page',
     to: '/workstations/',
   },
@@ -101,49 +101,54 @@ const ITEMS: Array<MenuItem> = [
   // Foundation
   {
     id: 'foundation.about',
-    label: 'The Foundation',
+    label: t('The Foundation'),
     icon: 'foundation',
     to: '/foundation/',
   },
   {
     id: 'foundation.patrons',
-    label: 'Patrons',
+    label: t('Patrons'),
     icon: 'patrons',
     to: '/patrons/',
   },
   {
     id: 'foundation.sponsorships',
-    label: 'Sponsorships',
+    label: t('Sponsorships'),
     icon: 'patrons',
     to: '/sponsorships/',
   },
-  { id: 'foundation.staff', label: 'Staff', icon: 'teams', to: '/staff/' },
+  { id: 'foundation.staff', label: t('Staff'), icon: 'teams', to: '/staff/' },
   {
     id: 'foundation.air',
-    label: 'Artists in Residence',
+    label: t('Artists in Residence'),
     icon: 'page',
     to: '/air/',
   },
 
   // About
-  { id: 'about.doctrine', label: 'Doctrine', icon: 'page', to: '/doctrine/' },
-  { id: 'about.brand', label: 'Brand', icon: 'brand', to: '/brand/' },
+  {
+    id: 'about.doctrine',
+    label: t('Doctrine'),
+    icon: 'page',
+    to: '/doctrine/',
+  },
+  { id: 'about.brand', label: t('Brand'), icon: 'brand', to: '/brand/' },
   { id: 'about.omakub', label: 'Omakub', icon: 'page', to: '/omakub/' },
   {
     id: 'about.server',
-    label: 'Omarchy Server',
+    label: t('Omarchy Server'),
     icon: 'server',
     to: '/server/',
   },
   {
     id: 'about.potato',
-    label: 'Potato Hardware',
+    label: t('Potato Hardware'),
     icon: 'page',
     to: '/potato/',
   },
   {
     id: 'about.security',
-    label: 'Security',
+    label: t('Security'),
     icon: 'security',
     to: '/security/',
   },
@@ -165,12 +170,13 @@ export const opensMenu = (item: MenuItem) =>
 
 export const menuTitle = (menu: string) => {
   const item = menuItem(menu)
-  return t(item?.title ?? item?.label ?? 'Go')
+  return item?.title ?? item?.label ?? t('Go')
 }
 
 /**
- * Index entries dressed as menu rows. Manual chapters only - the per-heading
- * entries are for searching, and listing them here would bury the chapters.
+ * Index entries dressed as menu rows. One row per manual chapter: the index
+ * carries an entry per section, and a chapter that opens with a heading has
+ * no headingless entry of its own, so the first entry for a slug stands in.
  * Themes and plugins are not here: each is one destination, so a submenu of
  * them was a list whose every row went to the same page. They stay reachable
  * by search, which is where a specific theme or plugin was always found.
@@ -180,15 +186,21 @@ export function providerRows(
   index: Array<SearchEntry> | null,
 ): Array<MenuItem> {
   if (!provider || !index) return []
-  if (provider === 'manual')
-    return index
-      .filter((entry) => entry.kind === 'manual' && !entry.heading)
-      .map((entry) => ({
+  if (provider === 'manual') {
+    const seen = new Set<string>()
+    const chapters: Array<MenuItem> = []
+    for (const entry of index) {
+      if (entry.kind !== 'manual' || seen.has(entry.slug)) continue
+      seen.add(entry.slug)
+      chapters.push({
         id: `manual.${entry.slug}`,
         label: entry.title,
-        icon: 'manual' as const,
+        icon: 'manual',
         to: entry.slug === 'index' ? '/manual/' : `/manual/${entry.slug}/`,
-      }))
+      })
+    }
+    return chapters
+  }
   return index
     .filter((entry) => entry.kind === 'news')
     .map((entry) => ({
@@ -204,7 +216,7 @@ export function filterRows(rows: Array<MenuItem>, query: string) {
   const terms = query.toLowerCase().split(/\s+/).filter(Boolean)
   if (terms.length === 0) return rows
   return rows.filter((row) => {
-    const label = t(row.label).toLowerCase()
+    const label = row.label.toLowerCase()
     return terms.every((term) => label.includes(term))
   })
 }

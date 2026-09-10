@@ -289,7 +289,10 @@ export function SearchPalette() {
           {menu !== 'root' ? (
             <button
               type="button"
-              onClick={back}
+              onPointerDown={(event) => {
+                event.preventDefault()
+                back()
+              }}
               aria-label={t('Back')}
               tabIndex={-1}
               className="-ml-1 shrink-0 text-text-muted transition-colors duration-150 ease-out hover:text-text"
@@ -390,7 +393,7 @@ function MenuRow({ item }: { item: MenuItem }) {
     <>
       <Icon className="size-4 shrink-0 opacity-80" />
       <span className="min-w-0 flex-1 truncate font-mono text-[13px]">
-        {t(item.label)}
+        {item.label}
       </span>
       {opensMenu(item) ? (
         <ChevronRightIcon className="size-3.5 shrink-0 opacity-50" />
