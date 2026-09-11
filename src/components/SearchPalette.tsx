@@ -81,6 +81,8 @@ export function SearchPalette() {
   const navigate = useNavigate()
   const input = useRef<HTMLInputElement>(null)
   const list = useRef<HTMLUListElement>(null)
+  // Where the pointer last was: a row picks itself only when it moved there.
+  const pointer = useRef({ x: -1, y: -1 })
   const scroller = useRef<HTMLDivElement>(null)
   const restore = useRef<HTMLElement | null>(null)
 
@@ -371,7 +373,17 @@ export function SearchPalette() {
                       event.preventDefault()
                       goRow(row)
                     }}
-                    onMouseEnter={() => setActive(at)}
+                    onPointerMove={(event) => {
+                      // Arrowing scrolls the list under a still pointer, and the
+                      // row that slides under it would take the selection back.
+                      if (
+                        event.clientX === pointer.current.x &&
+                        event.clientY === pointer.current.y
+                      )
+                        return
+                      pointer.current = { x: event.clientX, y: event.clientY }
+                      setActive(at)
+                    }}
                     className={
                       'flex w-full items-center gap-3 px-3 text-left ' +
                       (row.sort === 'hit' ? 'py-2.5 ' : 'h-[40px] ') +
