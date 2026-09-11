@@ -12,7 +12,7 @@
     ]
   },
   "foundation": {
-    "total": 15.5,
+    "total": 18.5,
     "steps": [
       {
         "date": "2026-08-21",
@@ -48,6 +48,11 @@
         "date": "2026-09-07",
         "amount": 15.5,
         "post": "/news/2026/09/omacom-foundation-raises-another-half-a-million-dollars/"
+      },
+      {
+        "date": "2026-09-09",
+        "amount": 18.5,
+        "post": "/news/2026/09/digitalocean-joins-as-founding-corporate-patron/"
       }
     ]
   },
