@@ -340,11 +340,11 @@
       "start": "2026-09-12T05:00:00.000Z",
       "end": "2026-09-12T08:00:00.000Z",
       "timezone": null,
-      "address": "Cheongdam-dong, Gangnam District, Seoul, South Korea",
+      "address": null,
       "city": null,
-      "country": "South Korea",
+      "country": null,
       "online": null,
-      "geo": { "lat": 37.5233931, "lon": 127.04797359999999 },
+      "geo": { "lat": 37.52799370970566, "lon": 127.04430622520796 },
       "hosts": ["Woonggi Min"],
       "cover": null
     },
@@ -825,7 +825,7 @@
       "country": null,
       "online": null,
       "geo": { "lat": 28.6119843392276, "lon": 77.2091405705566 },
-      "hosts": ["Aryan Jangra"],
+      "hosts": ["Aryan Jangra", "Bhavya Vats"],
       "cover": null
     },
     {
