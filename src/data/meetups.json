@@ -1,7 +1,7 @@
 {
   "source": "luma-api",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-09-10",
+  "refreshed": "2026-09-11",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -382,11 +382,11 @@
       "start": "2026-09-12T05:00:00.000Z",
       "end": "2026-09-12T08:00:00.000Z",
       "timezone": "Asia/Seoul",
-      "address": "Cheongdam-dong, Gangnam District, Seoul, South Korea",
+      "address": "Seoul, South Korea",
       "city": "Seoul, South Korea",
       "country": "KR",
       "online": false,
-      "geo": { "lat": 37.5233931, "lon": 127.04797359999999 },
+      "geo": { "lat": 37.52799370970566, "lon": 127.04430622520796 },
       "hosts": [],
       "cover": "/images/meetups/evt-Fcp8LvwsgBrZu5A-full.webp",
       "coverWidth": 800,
@@ -712,6 +712,23 @@
       "geo": { "lat": 51.5223258, "lon": -0.0834298 },
       "hosts": [],
       "cover": "/images/meetups/evt-BBThcDvell8NhyN-full.webp",
+      "coverWidth": 800,
+      "coverHeight": 800
+    },
+    {
+      "id": "evt-fHZpVL9NNBUoECw",
+      "title": "Omarchy Cleveland",
+      "url": "https://luma.com/gftf8538",
+      "start": "2026-09-24T22:00:00.000Z",
+      "end": "2026-09-24T23:00:00.000Z",
+      "timezone": "America/New_York",
+      "address": "Nervous Dog Coffee Bar, Beachwood, La Place, 2101 Richmond Rd, Beachwood, OH 44122, USA",
+      "city": "Beachwood",
+      "country": "US",
+      "online": false,
+      "geo": { "lat": 41.5003889, "lon": -81.4965522 },
+      "hosts": [],
+      "cover": "/images/meetups/evt-fHZpVL9NNBUoECw-full.webp",
       "coverWidth": 800,
       "coverHeight": 800
     },
