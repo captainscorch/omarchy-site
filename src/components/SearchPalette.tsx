@@ -28,9 +28,11 @@ import { KIND_LABEL, OPEN_SEARCH_EVENT, searchAll } from '@/lib/search'
 import type { MenuIcon, MenuItem } from '@/lib/menu'
 import {
   childrenOf,
+  everyRow,
   filterRows,
   localeHref,
   menuItem,
+  menuParent,
   menuTitle,
   opensMenu,
   providerRows,
@@ -105,21 +107,23 @@ export function SearchPalette() {
   /**
    * The rows under the cursor. A submenu lists its own entries and nothing
    * else - walking into Manual and typing means "which chapter", not "search
-   * the site". The root is where a query reaches past the menu into the index.
+   * the site". The root is where a query reaches the whole tree, so Doctrine
+   * is found without knowing it sits under Community, and past the menu into
+   * the index.
    */
+  const searching = menu === 'root' && query.trim().length > 0
   const rows = useMemo<Row[]>(() => {
-    const own = [
-      ...childrenOf(menu),
-      ...providerRows(menuItem(menu)?.provider, index),
-    ]
+    const own = searching
+      ? everyRow()
+      : [...childrenOf(menu), ...providerRows(menuItem(menu)?.provider, index)]
     const entries: Row[] = filterRows(own, query).map((row) => ({
       sort: 'menu',
       item: row,
     }))
-    if (menu !== 'root' || !query.trim() || !index) return entries
+    if (!searching || !index) return entries
     const hits = searchAll(index, query)
     return [...entries, ...hits.map((hit) => ({ sort: 'hit' as const, hit }))]
-  }, [menu, query, index])
+  }, [searching, menu, query, index])
 
   useEffect(() => setActive(0), [menu, query])
 
@@ -378,7 +382,12 @@ export function SearchPalette() {
                     }
                   >
                     {row.sort === 'menu' ? (
-                      <MenuRow item={row.item} />
+                      <MenuRow
+                        item={row.item}
+                        crumb={
+                          searching ? menuParent(row.item)?.label : undefined
+                        }
+                      />
                     ) : (
                       <HitRow hit={row.hit} />
                     )}
@@ -396,7 +405,8 @@ export function SearchPalette() {
 const rowKey = (row: Row, at: number) =>
   row.sort === 'menu' ? row.item.id : `${row.hit.kind}-${row.hit.slug}-${at}`
 
-function MenuRow({ item }: { item: MenuItem }) {
+/** `crumb` names the submenu a row was found in, when found from the root. */
+function MenuRow({ item, crumb }: { item: MenuItem; crumb?: string }) {
   const Icon = ICONS[item.icon]
   return (
     <>
@@ -416,6 +426,11 @@ function MenuRow({ item }: { item: MenuItem }) {
       >
         {item.label}
       </span>
+      {crumb ? (
+        <span className="ml-auto shrink-0 font-mono text-[10px] tracking-wide text-text-muted uppercase">
+          {crumb}
+        </span>
+      ) : null}
       {opensMenu(item) ? (
         <ChevronRightIcon className="size-3.5 shrink-0 opacity-50" />
       ) : null}

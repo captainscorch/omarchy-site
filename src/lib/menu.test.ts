@@ -4,9 +4,11 @@ import type { SearchEntry } from '../astro/search-index.ts'
 import { locales } from '../i18n/site.ts'
 import {
   childrenOf,
+  everyRow,
   filterRows,
   localeHref,
   menuItem,
+  menuParent,
   menuTitle,
   opensMenu,
   providerRows,
@@ -73,6 +75,16 @@ test('filtering keeps the rows whose label contains every term', () => {
   )
   assert.deepEqual(filterRows(root, 'nothing like this'), [])
   assert.deepEqual(filterRows(root, '  '), root)
+  // From the root a query reaches the whole tree, not just the root's rows.
+  const doctrine = filterRows(everyRow(), 'doctrine')
+  assert.deepEqual(
+    doctrine.map((row) => [row.id, menuParent(row)?.id]),
+    [['community.doctrine', 'community']],
+  )
+  assert.deepEqual(
+    filterRows(everyRow(), 'dansk').map((row) => row.id),
+    ['language.da'],
+  )
 })
 
 test('the tree reads out of the dotted ids', () => {

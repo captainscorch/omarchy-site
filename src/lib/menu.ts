@@ -189,6 +189,12 @@ export function childrenOf(menu: string): Array<MenuItem> {
 
 export const menuItem = (id: string) => ITEMS.find((item) => item.id === id)
 
+/** Every row in the tree, root first, for a query typed at the root. */
+export const everyRow = () => ITEMS
+
+/** The submenu a row sits in; nothing for a root row. */
+export const menuParent = (item: MenuItem) => menuItem(parentOf(item.id))
+
 /** A row opens a submenu when it has children of its own or a provider. */
 export const opensMenu = (item: MenuItem) =>
   !!item.provider || childrenOf(item.id).length > 0
