@@ -369,10 +369,10 @@ export function SearchPalette() {
                     aria-selected={at === active}
                     // Arrow keys move the selection; rows are excluded from the tab order.
                     tabIndex={-1}
-                    onPointerDown={(event) => {
-                      event.preventDefault()
-                      goRow(row)
-                    }}
+                    // Pressing keeps focus in the field; the click is what acts, so
+                    // a finger scrolling the list does not open the row it lands on.
+                    onPointerDown={(event) => event.preventDefault()}
+                    onClick={() => goRow(row)}
                     onPointerMove={(event) => {
                       // Arrowing scrolls the list under a still pointer, and the
                       // row that slides under it would take the selection back.
