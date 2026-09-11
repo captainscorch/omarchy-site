@@ -66,7 +66,7 @@ export function searchAll(
       if (at >= 0) {
         score += 1
         // Only prose carries a snippet worth showing. A theme's index text
-        // is its owner, which the row already prints.
+        // is its owner's name, which is not worth a line of its own.
         if (!snippet && (entry.kind === 'manual' || entry.kind === 'news')) {
           snippet = snippetAround(entry.text, at, term.length)
         }
