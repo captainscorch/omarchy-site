@@ -74,7 +74,7 @@ test('filtering keeps the rows whose label contains every term', () => {
 })
 
 test('the tree reads out of the dotted ids', () => {
-  assert.ok(childrenOf('root').length > 0)
+  assert.equal(childrenOf('root')[0]?.id, 'home')
   for (const row of childrenOf('community'))
     assert.ok(row.id.startsWith('community.'), row.id)
   assert.equal(opensMenu(menuItem('manual')!), true)

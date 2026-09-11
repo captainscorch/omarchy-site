@@ -13,6 +13,7 @@ import type { SearchEntry } from '@/lib/content'
  */
 
 export type MenuIcon =
+  | 'home'
   | 'manual'
   | 'news'
   | 'themes'
@@ -50,6 +51,7 @@ export type MenuItem = {
 /** The whole tree, flat. `parentOf` reads the hierarchy back out of the ids. */
 const ITEMS: Array<MenuItem> = [
   // Root
+  { id: 'home', label: t('Home'), icon: 'home', to: '/' },
   { id: 'manual', label: t('Manual'), icon: 'manual', provider: 'manual' },
   { id: 'news', label: t('News'), icon: 'news', to: '/news/' },
   { id: 'themes', label: t('Themes'), icon: 'themes', to: '/themes/' },

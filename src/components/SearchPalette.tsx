@@ -19,6 +19,7 @@ import {
   StarIcon,
   StoreIcon,
 } from '@/components/icons'
+import { OmarchyMark } from '@/components/Brand'
 import type { SearchEntry } from '@/lib/content'
 import { getSearchIndex } from '@/lib/content'
 import type { SearchHit } from '@/lib/search'
@@ -48,6 +49,7 @@ const typing = (el: HTMLElement | null) =>
     el.isContentEditable)
 
 const ICONS: Record<MenuIcon, typeof PageIcon> = {
+  home: OmarchyMark,
   manual: PageIcon,
   news: RssIcon,
   themes: PaletteIcon,
