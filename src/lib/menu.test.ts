@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import type { SearchEntry } from '../astro/search-index.ts'
+import { locales } from '../i18n/site.ts'
 import {
   childrenOf,
   filterRows,
+  localeHref,
   menuItem,
   menuTitle,
   opensMenu,
@@ -82,4 +84,39 @@ test('the tree reads out of the dotted ids', () => {
   assert.equal(opensMenu(menuItem('themes')!), false)
   assert.equal(menuTitle('root'), 'Go')
   assert.equal(menuTitle('community'), menuItem('community')!.label)
+})
+
+test('the root runs Home to Project, Plugins before Themes and GitHub before Install', () => {
+  assert.deepEqual(
+    childrenOf('root').map((row) => row.id),
+    [
+      'home',
+      'manual',
+      'news',
+      'plugins',
+      'themes',
+      'language',
+      'github',
+      'install',
+      'community',
+      'foundation',
+      'project',
+    ],
+  )
+})
+
+test('every locale is a language row, English first, linking to the page only where that site has it', () => {
+  const rows = childrenOf('language')
+  assert.equal(rows.length, Object.keys(locales).length)
+  assert.equal(rows[0]?.locale, 'en')
+  assert.ok(rows.every((row) => row.glyph && row.locale && row.label))
+  assert.equal(
+    localeHref('da', '/themes/', '?x=1'),
+    'https://omarchy.dk/themes/?x=1',
+  )
+  assert.equal(localeHref('da', '/manual/faq/'), 'https://omarchy.dk/')
+  assert.equal(
+    localeHref('en', '/manual/faq/'),
+    'https://omarchy.org/manual/faq/',
+  )
 })

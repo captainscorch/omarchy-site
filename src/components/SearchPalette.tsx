@@ -20,6 +20,7 @@ import {
   StoreIcon,
 } from '@/components/icons'
 import { OmarchyMark } from '@/components/Brand'
+import { GlobeIcon } from '@/components/icons/GlobeIcon'
 import type { SearchEntry } from '@/lib/content'
 import { getSearchIndex } from '@/lib/content'
 import type { SearchHit } from '@/lib/search'
@@ -28,6 +29,7 @@ import type { MenuIcon, MenuItem } from '@/lib/menu'
 import {
   childrenOf,
   filterRows,
+  localeHref,
   menuItem,
   menuTitle,
   opensMenu,
@@ -55,6 +57,7 @@ const ICONS: Record<MenuIcon, typeof PageIcon> = {
   themes: PaletteIcon,
   plugins: PluginsIcon,
   install: DownloadIcon,
+  language: GlobeIcon,
   community: AgentsIcon,
   foundation: BankIcon,
   project: StarIcon,
@@ -202,6 +205,14 @@ export function SearchPalette() {
       return
     }
     close()
+    if (item.locale) {
+      window.location.href = localeHref(
+        item.locale,
+        window.location.pathname,
+        window.location.search + window.location.hash,
+      )
+      return
+    }
     if (item.href) {
       window.location.href = item.href
       return
@@ -389,8 +400,20 @@ function MenuRow({ item }: { item: MenuItem }) {
   const Icon = ICONS[item.icon]
   return (
     <>
-      <Icon className="size-4 shrink-0 opacity-80" />
-      <span className="min-w-0 flex-1 truncate font-mono text-[13px]">
+      {item.glyph ? (
+        <span
+          aria-hidden="true"
+          className="w-4 shrink-0 text-center leading-none"
+        >
+          {item.glyph}
+        </span>
+      ) : (
+        <Icon className="size-4 shrink-0 opacity-80" />
+      )}
+      <span
+        dir="auto"
+        className="min-w-0 flex-1 truncate font-mono text-[13px]"
+      >
         {item.label}
       </span>
       {opensMenu(item) ? (

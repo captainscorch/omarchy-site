@@ -1,4 +1,10 @@
-import { t } from '../i18n/site.ts'
+import {
+  flag,
+  hasTranslation,
+  locales,
+  sortedLocales,
+  t,
+} from '../i18n/site.ts'
 import type { SearchEntry } from '@/lib/content'
 
 /**
@@ -19,6 +25,7 @@ export type MenuIcon =
   | 'themes'
   | 'plugins'
   | 'install'
+  | 'language'
   | 'community'
   | 'foundation'
   | 'project'
@@ -46,6 +53,10 @@ export type MenuItem = {
   provider?: 'manual'
   /** Header shown while the submenu is open; defaults to the label. */
   title?: string
+  /** A locale to switch to, keeping the page where that site has it. */
+  locale?: string
+  /** A text glyph drawn in place of the icon: a locale's flag. */
+  glyph?: string
 }
 
 /** The whole tree, flat. `parentOf` reads the hierarchy back out of the ids. */
@@ -54,12 +65,19 @@ const ITEMS: Array<MenuItem> = [
   { id: 'home', label: t('Home'), icon: 'home', to: '/' },
   { id: 'manual', label: t('Manual'), icon: 'manual', provider: 'manual' },
   { id: 'news', label: t('News'), icon: 'news', to: '/news/' },
-  { id: 'themes', label: t('Themes'), icon: 'themes', to: '/themes/' },
   {
     id: 'plugins',
     label: t('Plugins'),
     icon: 'plugins',
     href: 'https://plugins.omarchy.org',
+  },
+  { id: 'themes', label: t('Themes'), icon: 'themes', to: '/themes/' },
+  { id: 'language', label: t('Language'), icon: 'language' },
+  {
+    id: 'github',
+    label: 'GitHub',
+    icon: 'github',
+    href: 'https://github.com/omacom/omarchy',
   },
   {
     id: 'install',
@@ -142,7 +160,24 @@ const ITEMS: Array<MenuItem> = [
     icon: 'merch',
     href: 'https://supply.37signals.com/collections/omarchy',
   },
+
+  // Language: the header's switcher as rows, every locale by its own name.
+  ...sortedLocales.map(([code, entry]) => ({
+    id: `language.${code}`,
+    label: entry.name,
+    icon: 'language' as const,
+    glyph: flag(entry.domain, entry.flag),
+    locale: code,
+  })),
 ]
+
+/**
+ * The same page on another locale's site, or its front page where that site
+ * does not have the page, as the header's switcher links.
+ */
+export function localeHref(code: string, path: string, suffix = '') {
+  return `${locales[code].domain}${hasTranslation(code, path) ? path + suffix : '/'}`
+}
 
 const parentOf = (id: string) =>
   id.includes('.') ? id.slice(0, id.lastIndexOf('.')) : 'root'
