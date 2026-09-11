@@ -22,7 +22,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { useHashLink, useTopLink } from '@/lib/hash-scroll'
+import { useHashLink } from '@/lib/hash-scroll'
 import { OPEN_PICKER_EVENT, THEME_EVENT, groundOf } from '@/lib/theme'
 import { OPEN_SEARCH_EVENT } from '@/lib/search'
 import { cn } from '@/lib/utils'
@@ -413,7 +413,6 @@ export function SiteHeader({ path = '/' }: { path?: string }) {
   const heroInView = useHeroInView(pathname === '/')
   const [menuOpen, setMenuOpen] = useState(false)
   const installLink = useHashLink('install')
-  const homeLink = useTopLink()
   const transparent = heroInView
 
   useEffect(() => setMenuOpen(false), [pathname])
@@ -438,8 +437,22 @@ export function SiteHeader({ path = '/' }: { path?: string }) {
   const glyph = (
     <Link
       to="/"
-      aria-label={t('Omarchy home')}
-      onClick={homeLink}
+      aria-label={t('Search Omarchy')}
+      onClick={(event) => {
+        // A plain click opens the menu, whose first row is Home. A modified or
+        // middle click is still a link home, as the browser expects of one.
+        if (
+          event.defaultPrevented ||
+          event.button !== 0 ||
+          event.metaKey ||
+          event.ctrlKey ||
+          event.shiftKey ||
+          event.altKey
+        )
+          return
+        event.preventDefault()
+        window.dispatchEvent(new CustomEvent(OPEN_SEARCH_EVENT))
+      }}
       className="mark-draw-trigger relative flex items-center"
     >
       <OmarchyMarkDrawn className="size-[22px] shrink-0 transition-opacity duration-150 ease-out max-sm:group-data-[nav-past-hero]/bar:opacity-0 lg:size-[calc(var(--pxc)*2)]" />
