@@ -291,16 +291,16 @@ export function SearchPalette() {
         className="absolute inset-0 bg-bg/60 supports-backdrop-filter:backdrop-blur-xs"
       />
 
-      {/* The desktop menu's card, scaled by 13/16: its label is 16px in a 50px row
-          inside 18px of padding under a 34px header, and the site sets the label
-          at 13px, so the rows, header and padding shrink with it. */}
-      <div className="relative flex max-h-[70vh] w-full max-w-[340px] flex-col border-2 border-border-strong bg-surface p-[15px]">
+      {/* 2px, the width the desktop menu draws its own card border at. The rows
+          are the desktop's 50px scaled to this label size; the padding and
+          header are its own. */}
+      <div className="relative flex max-h-[70vh] w-full max-w-[340px] flex-col border-2 border-border-strong bg-surface p-[18px]">
         {/*
           The prompt line, not a field. It carries the caret and the typing,
           but it is drawn as the menu's own header: the name of where you are,
           dimmed, until you replace it with a query.
         */}
-        <div className="flex h-[28px] shrink-0 items-center gap-2">
+        <div className="flex h-[34px] shrink-0 items-center gap-2">
           {menu !== 'root' ? (
             <button
               type="button"
@@ -325,7 +325,7 @@ export function SearchPalette() {
             autoComplete="off"
             spellCheck={false}
             enterKeyHint="go"
-            className="min-w-0 flex-1 bg-transparent font-mono text-base text-text outline-none placeholder:text-text placeholder:opacity-60 [&::-webkit-search-cancel-button]:hidden"
+            className="min-w-0 flex-1 bg-transparent font-mono text-[13px] text-text outline-none placeholder:text-text placeholder:opacity-60 [&::-webkit-search-cancel-button]:hidden"
           />
         </div>
 
@@ -339,7 +339,7 @@ export function SearchPalette() {
 
         <div
           ref={scroller}
-          className="scroll-accent -mx-1 mt-[5px] min-h-0 flex-1 overflow-y-auto px-1"
+          className="scroll-accent -mx-1 mt-1.5 min-h-0 flex-1 overflow-y-auto px-1"
         >
           {rows.length === 0 ? (
             <p className="px-2 py-6 font-mono text-[13px] text-text-muted">
