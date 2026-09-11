@@ -47,7 +47,7 @@ export type MenuItem = {
   to?: string
   /** Anchor to scroll to once `to` has rendered. */
   hash?: string
-  /** External destination; opens in a new tab. */
+  /** External destination, opened in this tab like every link on the site. */
   href?: string
   /** Filled in from the search index rather than listed here. */
   provider?: 'manual'
@@ -189,8 +189,21 @@ export function childrenOf(menu: string): Array<MenuItem> {
 
 export const menuItem = (id: string) => ITEMS.find((item) => item.id === id)
 
-/** Every row in the tree, root first, for a query typed at the root. */
-export const everyRow = () => ITEMS
+/**
+ * Every row a query typed at the root can reach, root first. A destination
+ * listed twice, GitHub at the root and again under Project, is one row here.
+ */
+export function everyRow(): Array<MenuItem> {
+  const seen = new Set<string>()
+  return ITEMS.filter((item) => {
+    const destination =
+      item.href ?? item.locale ?? (item.to && item.to + (item.hash ?? ''))
+    if (!destination) return true
+    if (seen.has(destination)) return false
+    seen.add(destination)
+    return true
+  })
+}
 
 /** The submenu a row sits in; nothing for a root row. */
 export const menuParent = (item: MenuItem) => menuItem(parentOf(item.id))

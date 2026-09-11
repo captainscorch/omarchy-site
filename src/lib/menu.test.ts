@@ -85,6 +85,12 @@ test('filtering keeps the rows whose label contains every term', () => {
     filterRows(everyRow(), 'dansk').map((row) => row.id),
     ['language.da'],
   )
+  // GitHub is at the root and under Project; a query lists it once.
+  assert.deepEqual(
+    filterRows(everyRow(), 'github').map((row) => row.id),
+    ['github'],
+  )
+  assert.ok(childrenOf('project').some((row) => row.id === 'project.github'))
 })
 
 test('the tree reads out of the dotted ids', () => {
