@@ -589,6 +589,21 @@
       "cover": null
     },
     {
+      "id": "evt-B35A5EQ0vox0GoY",
+      "title": "Omarchy Brasil #002: Omarchy + Hermes Agent - Um Agente de IA Morando no Seu Linux",
+      "url": "https://luma.com/vfyg4ly8",
+      "start": "2026-09-22T22:30:00.000Z",
+      "end": "2026-09-23T00:00:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": "BR",
+      "online": null,
+      "geo": { "lat": -10.3333333, "lon": -53.2, "approximate": true },
+      "hosts": ["Guilherme Monteiro"],
+      "cover": null
+    },
+    {
       "id": "evt-PxPJVCnzOvx3MSu",
       "title": "Linux & Omarchy Meetup - Northampton, UK",
       "url": "https://luma.com/da9jp6p4",
@@ -825,7 +840,7 @@
       "country": null,
       "online": null,
       "geo": { "lat": 28.6119843392276, "lon": 77.2091405705566 },
-      "hosts": ["Aryan Jangra", "Bhavya Vats"],
+      "hosts": ["Aryan Jangra", "4 others"],
       "cover": null
     },
     {
