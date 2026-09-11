@@ -9,8 +9,8 @@ import type { SearchEntry } from '@/lib/content'
  * Ids are dotted the way omarchy-menu's are, so a child names its parent and
  * the tree needs no nesting to read. A row either goes somewhere (`to`, `href`)
  * or opens a submenu; the submenus that list content are filled in from the
- * search index once it arrives, since it already carries every chapter, post,
- * theme and plugin the site knows about.
+ * search index once it arrives, since it already carries every chapter, post
+ * and theme the site knows about.
  */
 
 export type MenuIcon =
@@ -166,9 +166,10 @@ export const menuTitle = (menu: string) => {
  * Index entries dressed as menu rows. One row per manual chapter: the index
  * carries an entry per section, and a chapter that opens with a heading has
  * no headingless entry of its own, so the first entry for a slug stands in.
- * Themes and plugins are not here: each is one destination, so a submenu of
- * them was a list whose every row went to the same page. They stay reachable
- * by search, which is where a specific theme or plugin was always found.
+ * Themes are not here: each is one destination, so a submenu of them was a
+ * list whose every row went to the same page. They stay reachable by search,
+ * which is where a specific theme was always found. Plugins are not searched
+ * at all; the directory has a search of its own.
  */
 export function providerRows(
   provider: MenuItem['provider'],

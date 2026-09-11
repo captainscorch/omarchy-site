@@ -33,7 +33,6 @@ import {
   opensMenu,
   providerRows,
 } from '@/lib/menu'
-import { pluginUrl } from '@/lib/plugins'
 
 /**
  * Site-wide command menu, built to read like the one SUPER+SPACE opens on the
@@ -190,10 +189,6 @@ export function SearchPalette() {
         to: '/news/$year/$month/$slug/',
         params: { year: hit.year, month: hit.month, slug: hit.slug },
       })
-      return
-    }
-    if (hit.kind === 'plugin') {
-      window.location.href = pluginUrl(hit.slug)
       return
     }
     void navigate({ to: '/themes/' })
