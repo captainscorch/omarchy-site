@@ -8,9 +8,8 @@ import type { SearchEntry } from '@/lib/content'
  *
  * Ids are dotted the way omarchy-menu's are, so a child names its parent and
  * the tree needs no nesting to read. A row either goes somewhere (`to`, `href`)
- * or opens a submenu; the submenus that list content are filled in from the
- * search index once it arrives, since it already carries every chapter, post
- * and theme the site knows about.
+ * or opens a submenu; the one that lists content, Manual, is filled in from
+ * the search index once it arrives, since it already carries every chapter.
  */
 
 export type MenuIcon =
@@ -43,7 +42,7 @@ export type MenuItem = {
   /** External destination; opens in a new tab. */
   href?: string
   /** Filled in from the search index rather than listed here. */
-  provider?: 'manual' | 'news'
+  provider?: 'manual'
   /** Header shown while the submenu is open; defaults to the label. */
   title?: string
 }
@@ -52,7 +51,7 @@ export type MenuItem = {
 const ITEMS: Array<MenuItem> = [
   // Root
   { id: 'manual', label: t('Manual'), icon: 'manual', provider: 'manual' },
-  { id: 'news', label: t('News'), icon: 'news', provider: 'news' },
+  { id: 'news', label: t('News'), icon: 'news', to: '/news/' },
   { id: 'themes', label: t('Themes'), icon: 'themes', to: '/themes/' },
   {
     id: 'plugins',
@@ -167,38 +166,29 @@ export const menuTitle = (menu: string) => {
  * carries an entry per section, and a chapter that opens with a heading has
  * no headingless entry of its own, so the first entry for a slug stands in.
  * Themes are not here: each is one destination, so a submenu of them was a
- * list whose every row went to the same page. They stay reachable by search,
- * which is where a specific theme was always found. Plugins are not searched
- * at all; the directory has a search of its own.
+ * list whose every row went to the same page. Nor is the news: its index page
+ * is already the list. Both stay reachable by search, which is where a
+ * specific theme or post was always found. Plugins are not searched at all;
+ * the directory has a search of its own.
  */
 export function providerRows(
   provider: MenuItem['provider'],
   index: Array<SearchEntry> | null,
 ): Array<MenuItem> {
   if (!provider || !index) return []
-  if (provider === 'manual') {
-    const seen = new Set<string>()
-    const chapters: Array<MenuItem> = []
-    for (const entry of index) {
-      if (entry.kind !== 'manual' || seen.has(entry.slug)) continue
-      seen.add(entry.slug)
-      chapters.push({
-        id: `manual.${entry.slug}`,
-        label: entry.title,
-        icon: 'manual',
-        to: entry.slug === 'index' ? '/manual/' : `/manual/${entry.slug}/`,
-      })
-    }
-    return chapters
-  }
-  return index
-    .filter((entry) => entry.kind === 'news')
-    .map((entry) => ({
-      id: `news.${entry.slug}`,
+  const seen = new Set<string>()
+  const chapters: Array<MenuItem> = []
+  for (const entry of index) {
+    if (entry.kind !== 'manual' || seen.has(entry.slug)) continue
+    seen.add(entry.slug)
+    chapters.push({
+      id: `manual.${entry.slug}`,
       label: entry.title,
-      icon: 'news' as const,
-      to: `/news/${entry.year}/${entry.month}/${entry.slug}/`,
-    }))
+      icon: 'manual',
+      to: entry.slug === 'index' ? '/manual/' : `/manual/${entry.slug}/`,
+    })
+  }
+  return chapters
 }
 
 /** Substring match on the label, the way the desktop menu filters a submenu. */

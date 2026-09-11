@@ -53,16 +53,10 @@ test('every manual chapter is listed once, in index order, even one that opens w
   )
 })
 
-test('news rows carry the dated path and nothing from the manual', () => {
-  assert.deepEqual(
-    providerRows('news', [chapter('faq', 'FAQ', null), post]).map((row) => [
-      row.id,
-      row.to,
-    ]),
-    [['news.hello', '/news/2026/09/hello/']],
-  )
-  assert.deepEqual(providerRows('news', null), [])
+test('a row without a provider takes nothing from the index', () => {
   assert.deepEqual(providerRows(undefined, [post]), [])
+  assert.deepEqual(providerRows('manual', null), [])
+  assert.equal(opensMenu(menuItem('news')!), false)
 })
 
 test('filtering keeps the rows whose label contains every term', () => {
