@@ -460,19 +460,6 @@ export function SiteHeader({ path = '/' }: { path?: string }) {
     </Link>
   )
 
-  const search = (
-    <Button
-      variant="ghost"
-      size="icon"
-      aria-label={t('Search Omarchy')}
-      data-nav-glyph
-      className="relative h-8 w-8 text-text-secondary transition-[background-color,transform] hover:text-text before:absolute before:-inset-1 lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]"
-      onClick={() => window.dispatchEvent(new CustomEvent(OPEN_SEARCH_EVENT))}
-    >
-      <SearchIcon className="size-5" />
-    </Button>
-  )
-
   const theme = (
     <Button
       variant="ghost"
@@ -552,9 +539,6 @@ export function SiteHeader({ path = '/' }: { path?: string }) {
           <div className="ml-auto flex items-center gap-2.5">
             <div className="hidden items-center gap-1 sm:flex">
               <TooltipProvider delay={300}>
-                <NavTooltip label={t('Search Omarchy')} shortcut="⌘K / Ctrl+K">
-                  {search}
-                </NavTooltip>
                 <NavTooltip label={t('Change website theme')} shortcut="T">
                   {theme}
                 </NavTooltip>
@@ -760,9 +744,6 @@ export function HeroNavGhost() {
             className="hidden items-center gap-1 sm:flex"
             style={{ color: 'var(--t-hdr-text-2)' }}
           >
-            <span className="flex h-8 w-8 items-center justify-center lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]">
-              <SearchIcon className="size-5" />
-            </span>
             <span className="flex h-8 w-8 items-center justify-center lg:h-[calc(var(--pxr)*3)] lg:w-[calc(var(--pxr)*3)]">
               <PaletteIcon className="size-5" />
             </span>
