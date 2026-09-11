@@ -6,7 +6,6 @@ import {
   BankIcon,
   BrushIcon,
   ChevronRightIcon,
-  CrossIcon,
   DiscordIcon,
   DownloadIcon,
   GithubIcon,
@@ -229,9 +228,6 @@ export function SearchPalette() {
       else close()
       return
     }
-    // Everything below drives the list from the field. A key pressed on the
-    // close button is the button's own: Enter there closes rather than opens.
-    if (event.target !== input.current) return
     if (
       (event.key === 'Backspace' || event.key === 'ArrowLeft') &&
       !query &&
@@ -312,14 +308,6 @@ export function SearchPalette() {
             enterKeyHint="go"
             className="min-w-0 flex-1 bg-transparent font-mono text-base text-text outline-none placeholder:text-text placeholder:opacity-60 [&::-webkit-search-cancel-button]:hidden"
           />
-          <button
-            type="button"
-            onClick={close}
-            aria-label={t('Close search')}
-            className="relative -mr-1 flex size-7 shrink-0 items-center justify-center text-text-muted transition-colors duration-150 ease-out hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-          >
-            <CrossIcon className="size-4" />
-          </button>
         </div>
 
         <div className="sr-only" aria-live="polite">
