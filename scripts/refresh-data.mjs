@@ -19,6 +19,11 @@ import prettier from 'prettier'
 import { assetId } from './lib/asset-id.mjs'
 import { decodeCalendarText } from './lib/ical.mjs'
 import { geocodeTitle } from './lib/geocode.mjs'
+import {
+  fetchDonations,
+  replaceSections,
+  tierSections,
+} from './lib/zeffy-patrons.mjs'
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = path.join(ROOT, 'src/data')
@@ -355,6 +360,27 @@ if (CF_TOKEN && CF_ZONE) {
 } else {
   console.log(
     'momentum.json: ISO downloads left as they were, no Cloudflare token',
+  )
+}
+
+// ---------------------------------------------------------- open patrons
+// The tier sections on /patrons, rebuilt from Zeffy's public donor list -
+// no credentials needed. The generated span lives between markers in
+// patrons/index.html, the page source port_content.py carries into
+// pages.json at build; when Zeffy is unreachable the page stays as it is.
+try {
+  const PATRONS_PAGE = path.join(ROOT, 'patrons/index.html')
+  const page = await readFile(PATRONS_PAGE, 'utf8')
+  const donations = await fetchDonations()
+  const replaced = replaceSections(page, tierSections(donations))
+  if (replaced == null) throw new Error('markers missing')
+  if (replaced !== page) await writeFile(PATRONS_PAGE, replaced)
+  console.log(
+    `patrons/index.html: ${donations.length} donations across the open patron tiers`,
+  )
+} catch (error) {
+  console.warn(
+    `patrons/index.html: open patrons left as they were, ${error.message}`,
   )
 }
 
