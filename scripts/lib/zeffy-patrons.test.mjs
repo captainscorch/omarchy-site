@@ -12,13 +12,16 @@ import {
 const donation = (fullName, dollars) => ({ fullName, amount: dollars * 100 })
 
 test('donations round down to the nearest tier point', () => {
-  const members = tierMembers([
-    donation('Exactly Eight', 8192),
-    donation('Nearly Eight', 8191),
-    donation('Custom Amount', 500),
-    donation('Floor', 16),
-    donation('Below Floor', 15),
-  ])
+  const members = tierMembers(
+    [
+      donation('Exactly Eight', 8192),
+      donation('Nearly Eight', 8191),
+      donation('Custom Amount', 500),
+      donation('Floor', 16),
+      donation('Below Floor', 15),
+    ],
+    [],
+  )
   assert.deepEqual(
     Object.fromEntries(
       TIERS.map((t) => [t.name, members.get(t.id).map((m) => m.name)]),
@@ -33,10 +36,10 @@ test('donations round down to the nearest tier point', () => {
 })
 
 test('a repeat donor counts once, with donations summed', () => {
-  const members = tierMembers([
-    donation('Twice Giver', 15),
-    donation('Twice Giver', 15),
-  ])
+  const members = tierMembers(
+    [donation('Twice Giver', 15), donation('Twice Giver', 15)],
+    [],
+  )
   assert.deepEqual(
     members.get('patrons-16b').map((m) => m.name),
     ['Twice Giver'],
@@ -44,10 +47,13 @@ test('a repeat donor counts once, with donations summed', () => {
 })
 
 test('anonymous donations stay off the list', () => {
-  const members = tierMembers([
-    { fullName: null, amount: 819200 },
-    { fullName: '  ', amount: 819200 },
-  ])
+  const members = tierMembers(
+    [
+      { fullName: null, amount: 819200 },
+      { fullName: '  ', amount: 819200 },
+    ],
+    [],
+  )
   for (const tier of TIERS) assert.equal(members.get(tier.id).length, 0)
 })
 
@@ -62,6 +68,11 @@ test('tiers order largest total first and escape markup in names', () => {
     html.indexOf('Larger Giver') <
       html.indexOf('&#60;script&#62;alert(1)&#60;/script&#62;'),
   )
+})
+
+test('off-platform patrons join their tier', () => {
+  const members = tierMembers([])
+  assert.ok(members.get('patrons-8k').some((m) => m.name === 'Zeno'))
 })
 
 test('replaceSections swaps exactly the generated span', () => {
