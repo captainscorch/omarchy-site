@@ -1603,8 +1603,9 @@ h6 {
 }
 .ported .patrons__tier {
   margin: 2.5em 0 0;
-  font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
 }
 .ported .patrons__supporters {
   display: grid;
