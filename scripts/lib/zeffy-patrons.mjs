@@ -71,7 +71,8 @@ export function tierMembers(donations) {
   return members
 }
 
-/** The tier sections as ported-page HTML, wrapped in the markers. */
+/** The tier blocks as ported-page HTML, wrapped in the markers. They sit
+ * inside the All Patrons section, so no section borders of their own. */
 export function tierSections(donations) {
   const members = tierMembers(donations)
   const sections = TIERS.map((tier) => {
@@ -79,18 +80,13 @@ export function tierSections(donations) {
       .get(tier.id)
       .map((m) => `            <li>${escape(m.name)}</li>`)
       .join('\n')
-    return `        <section class="team" id="${tier.id}">
-          <header class="team__header">
-            <h2 class="team__name"><a href="#${tier.id}">${tier.name}</a></h2>
-            <p class="team__description">Each contributing ${dollars(tier.cents)} or more.</p>
-          </header>
-
+    return `          <h3 class="patrons__tier" id="${tier.id}">${tier.name}</h3>
+          <p class="team__description">Each contributing ${dollars(tier.cents)} or more.</p>
           <ul class="patrons__supporters" aria-label="${tier.name} patrons, largest contributions first">
 ${names}
-          </ul>
-        </section>`
+          </ul>`
   })
-  return `${START_MARK}\n${sections.join('\n\n')}\n        ${END_MARK}`
+  return `${START_MARK}\n${sections.join('\n\n')}\n          ${END_MARK}`
 }
 
 /** The page HTML with the generated span replaced; null when unmarked. */
