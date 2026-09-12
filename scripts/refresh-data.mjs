@@ -288,13 +288,24 @@ if (CF_TOKEN && CF_ZONE) {
       )
       const isoBytes = Number(head.headers.get('content-length'))
       if (!(isoBytes > 1e9)) throw new Error(`odd ISO size: ${isoBytes}`)
-      const rows = await isoTraffic(start, yesterday)
+      // Reach back far enough for the period rows even when the ledger
+      // only needs a day, so one query serves both.
+      const periodDays = Math.max(
+        30,
+        ...(momentum.downloads.periods ?? []).map((p) => p.days),
+      )
+      const fetchStart =
+        start < day(daysAgo(periodDays)) ? start : day(daysAgo(periodDays))
+      const rows = await isoTraffic(fetchStart, yesterday)
       let bytes = 0
+      const perDay = new Map()
       const countries = new Set(counting.countries)
       const perCountryDay = new Map()
       for (const row of rows) {
-        bytes += row.sum.edgeResponseBytes
-        const key = `${row.dimensions.date} ${row.dimensions.clientCountryName}`
+        const date = row.dimensions.date
+        perDay.set(date, (perDay.get(date) ?? 0) + row.sum.edgeResponseBytes)
+        if (date >= start) bytes += row.sum.edgeResponseBytes
+        const key = `${date} ${row.dimensions.clientCountryName}`
         perCountryDay.set(
           key,
           (perCountryDay.get(key) ?? 0) + row.sum.edgeResponseBytes,
@@ -304,6 +315,14 @@ if (CF_TOKEN && CF_ZONE) {
         if (sent >= isoBytes) countries.add(key.split(' ')[1])
       }
       const added = Math.round(bytes / isoBytes)
+      // The Yesterday / Last week / Last month rows on the figures card:
+      // each is its trailing window's bytes ending yesterday, in ISOs.
+      for (const period of momentum.downloads.periods ?? []) {
+        const cutoff = day(daysAgo(period.days))
+        let sent = 0
+        for (const [date, b] of perDay) if (date >= cutoff) sent += b
+        period.count = Math.round(sent / isoBytes)
+      }
       momentum.downloads.total += added
       momentum.downloads.countries = Math.max(
         momentum.downloads.countries,
