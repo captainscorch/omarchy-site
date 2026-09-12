@@ -294,7 +294,8 @@ def main() -> None:
           f'{sum(len(t["members"]) for t in teams)} people')
 
     patrons = [group for group in parse_teams(pages['patrons']['html'])
-               if group['id'] != 'everyone']
+               if group['id'] != 'everyone'
+               and not group['id'].startswith('patrons-')]
     (OUT / 'patrons.json').write_text(json.dumps(patrons, indent=1))
     print(f'patrons.json: {sum(len(group["members"]) for group in patrons)} people')
 
