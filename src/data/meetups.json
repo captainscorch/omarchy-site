@@ -505,11 +505,11 @@
       "start": "2026-09-16T22:00:00.000Z",
       "end": "2026-09-17T00:30:00.000Z",
       "timezone": null,
-      "address": "CABA · Lugar a confirmar",
-      "city": "Buenos Aires",
-      "country": "CABA · Lugar a confirmar",
+      "address": "Möoi Vicente López, Av. del Libertador 105, B1638 Vicente López, Provincia de Buenos Aires, Argentina",
+      "city": null,
+      "country": "Argentina",
       "online": null,
-      "geo": { "lat": -34.6095579, "lon": -58.3887904, "approximate": true },
+      "geo": { "lat": -34.5330935, "lon": -58.467462000000005 },
       "hosts": ["Adrián Mugnolo"],
       "cover": null
     },
@@ -840,7 +840,7 @@
       "country": null,
       "online": null,
       "geo": { "lat": 28.6119843392276, "lon": 77.2091405705566 },
-      "hosts": ["Aryan Jangra", "4 others"],
+      "hosts": ["Aryan Jangra"],
       "cover": null
     },
     {
@@ -1006,6 +1006,21 @@
       "online": null,
       "geo": { "lat": 18.4713858, "lon": -69.8918436, "approximate": true },
       "hosts": ["Cleyrol Santana Cristopher"],
+      "cover": null
+    },
+    {
+      "id": "evt-Go579QoFlyA9E5r",
+      "title": "Omarchy Ghana",
+      "url": "https://luma.com/fzp8rdnm",
+      "start": "2026-10-31T19:00:00.000Z",
+      "end": "2026-10-31T20:00:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": "GH",
+      "online": null,
+      "geo": { "lat": 8.0300284, "lon": -1.0800271, "approximate": true },
+      "hosts": ["Ebenezer Nana Ofosu"],
       "cover": null
     },
     {
