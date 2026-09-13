@@ -604,21 +604,6 @@
       "cover": null
     },
     {
-      "id": "evt-PxPJVCnzOvx3MSu",
-      "title": "Linux & Omarchy Meetup - Northampton, UK",
-      "url": "https://luma.com/da9jp6p4",
-      "start": "2026-09-24T15:00:00.000Z",
-      "end": "2026-09-24T17:30:00.000Z",
-      "timezone": null,
-      "address": "Vulcan Works, 34-38 Guildhall Rd, Northampton NN1 1EW, UK",
-      "city": null,
-      "country": "UK",
-      "online": null,
-      "geo": { "lat": 52.235849599999995, "lon": -0.8944494 },
-      "hosts": ["Team Mission Control"],
-      "cover": null
-    },
-    {
       "id": "evt-j0kkKPmpZ4BsV8P",
       "title": "Omarchy Germany / Deutschland Meetup",
       "url": "https://luma.com/nh08a3uq",
@@ -736,6 +721,21 @@
       "online": null,
       "geo": { "lat": 36.175982999999995, "lon": -86.7545616 },
       "hosts": ["Ryan Macy"],
+      "cover": null
+    },
+    {
+      "id": "evt-FSyUPQyjUYvFKfn",
+      "title": "Omarchy Prague",
+      "url": "https://luma.com/v9bjvpbu",
+      "start": "2026-09-29T16:00:00.000Z",
+      "end": "2026-09-29T19:00:00.000Z",
+      "timezone": null,
+      "address": "Scout Institute, Staroměstské nám. 4/1, Staré Město, 110 00 Praha-Praha 1, Czechia",
+      "city": null,
+      "country": "Czechia",
+      "online": null,
+      "geo": { "lat": 50.0866666, "lon": 14.419858699999999 },
+      "hosts": ["Marek Mahut"],
       "cover": null
     },
     {
@@ -991,6 +991,21 @@
       "online": null,
       "geo": { "lat": 43.344232999999996, "lon": 3.215795 },
       "hosts": ["Thomas GALIBERT"],
+      "cover": null
+    },
+    {
+      "id": "evt-PxPJVCnzOvx3MSu",
+      "title": "Linux & Omarchy Meetup - Northampton, UK",
+      "url": "https://luma.com/da9jp6p4",
+      "start": "2026-10-22T15:00:00.000Z",
+      "end": "2026-10-22T17:30:00.000Z",
+      "timezone": null,
+      "address": "Vulcan Works, 34-38 Guildhall Rd, Northampton NN1 1EW, UK",
+      "city": null,
+      "country": "UK",
+      "online": null,
+      "geo": { "lat": 52.235849599999995, "lon": -0.8944494 },
+      "hosts": ["Team Mission Control"],
       "cover": null
     },
     {
