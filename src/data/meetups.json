@@ -1,7 +1,7 @@
 {
   "source": "luma-feed",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-09-13",
+  "refreshed": "2026-09-14",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -760,11 +760,11 @@
       "start": "2026-09-30T23:00:00.000Z",
       "end": "2026-10-01T00:00:00.000Z",
       "timezone": null,
-      "address": "Dallas/Fort Worth, TX",
+      "address": "Dallas, TX, USA",
       "city": null,
-      "country": "TX",
+      "country": "USA",
       "online": null,
-      "geo": null,
+      "geo": { "lat": 32.7766642, "lon": -96.79698789999999 },
       "hosts": ["Matt Gleason"],
       "cover": null
     },
