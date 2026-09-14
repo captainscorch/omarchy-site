@@ -454,21 +454,6 @@
       "cover": null
     },
     {
-      "id": "evt-VjuPq46FI93haPG",
-      "title": "Omarchy Meetup - Green Bay",
-      "url": "https://luma.com/eoxdjbog",
-      "start": "2026-09-15T23:30:00.000Z",
-      "end": "2026-09-16T02:30:00.000Z",
-      "timezone": null,
-      "address": "The Depot Green Bay, 200 Dousman St, Green Bay, WI 54303, USA",
-      "city": null,
-      "country": "USA",
-      "online": null,
-      "geo": { "lat": 44.5194571, "lon": -88.01780769999999 },
-      "hosts": ["Jon Kinney"],
-      "cover": null
-    },
-    {
       "id": "evt-ZxhK7paWWnwv9oN",
       "title": "OMARCHY HAMBURG ⚓",
       "url": "https://luma.com/roda2d4v",
@@ -739,6 +724,21 @@
       "cover": null
     },
     {
+      "id": "evt-VjuPq46FI93haPG",
+      "title": "Omarchy Meetup - Green Bay",
+      "url": "https://luma.com/eoxdjbog",
+      "start": "2026-09-29T23:30:00.000Z",
+      "end": "2026-09-30T02:30:00.000Z",
+      "timezone": null,
+      "address": "The Depot Green Bay, 200 Dousman St, Green Bay, WI 54303, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 44.5194571, "lon": -88.01780769999999 },
+      "hosts": ["Jon Kinney"],
+      "cover": null
+    },
+    {
       "id": "evt-XY4PE0sSpMrxY7t",
       "title": "Omarchy NWA 001: Install Fest, Show & Tell, Tips and Tricks",
       "url": "https://luma.com/fja5zgw2",
@@ -925,11 +925,11 @@
       "start": "2026-10-16T17:00:00.000Z",
       "end": "2026-10-16T19:00:00.000Z",
       "timezone": null,
-      "address": "Frank & Roze Coffee Co., 4097 E 9th Ave, Denver, CO 80220, USA",
+      "address": "Kochi Cafe, 4100 E 8th Ave, Denver, CO 80220, USA",
       "city": null,
       "country": "USA",
       "online": null,
-      "geo": { "lat": 39.7312199, "lon": -104.93970089999999 },
+      "geo": { "lat": 39.729121899999996, "lon": -104.9392384 },
       "hosts": ["Harris Kenny"],
       "cover": null
     },
