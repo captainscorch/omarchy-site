@@ -1,7 +1,7 @@
 {
   "source": "luma-feed",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-09-14",
+  "refreshed": "2026-09-15",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -925,11 +925,11 @@
       "start": "2026-10-16T17:00:00.000Z",
       "end": "2026-10-16T19:00:00.000Z",
       "timezone": null,
-      "address": "Kochi Cafe, 4100 E 8th Ave, Denver, CO 80220, USA",
+      "address": null,
       "city": null,
-      "country": "USA",
+      "country": null,
       "online": null,
-      "geo": { "lat": 39.729121899999996, "lon": -104.9392384 },
+      "geo": { "lat": 39.7270504052832, "lon": -104.9379846189666 },
       "hosts": ["Harris Kenny"],
       "cover": null
     },
