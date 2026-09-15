@@ -64,21 +64,6 @@
       "cover": null
     },
     {
-      "id": "evt-nZvEJ5YOhs63tDW",
-      "title": "Omarchy Berlin - First Boot",
-      "url": "https://luma.com/vpazcuqh",
-      "start": "2026-08-28T16:30:00.000Z",
-      "end": "2026-08-28T19:30:00.000Z",
-      "timezone": null,
-      "address": null,
-      "city": null,
-      "country": null,
-      "online": null,
-      "geo": { "lat": 52.53354489958619, "lon": 13.410093334038638 },
-      "hosts": ["chinmaya"],
-      "cover": null
-    },
-    {
       "id": "evt-UupMB4dm4GIoWTG",
       "title": "Omarchy meet up CDMX",
       "url": "https://luma.com/fdods418",
@@ -559,6 +544,21 @@
       "cover": null
     },
     {
+      "id": "evt-qCK1wkpu0EC080t",
+      "title": "Omarchy Toronto",
+      "url": "https://luma.com/m48va0ti",
+      "start": "2026-09-20T16:30:00.000Z",
+      "end": "2026-09-20T18:30:00.000Z",
+      "timezone": null,
+      "address": "Creeds Coffee Bar, 450 Dupont St, Toronto, ON M5R 3P3, Canada",
+      "city": null,
+      "country": "Canada",
+      "online": null,
+      "geo": { "lat": 43.6735316, "lon": -79.41328039999999 },
+      "hosts": ["Andrew Clunis"],
+      "cover": null
+    },
+    {
       "id": "evt-r4p4VN2OdsP8pEU",
       "title": "Omarchy Meetup Austin, TX",
       "url": "https://luma.com/cvpft021",
@@ -631,6 +631,36 @@
       "online": null,
       "geo": { "lat": 41.5003889, "lon": -81.4965522 },
       "hosts": ["Daniel"],
+      "cover": null
+    },
+    {
+      "id": "evt-0DIroZMohLyyZV1",
+      "title": "OMARCHY Show Low, AZ",
+      "url": "https://luma.com/859i79kb",
+      "start": "2026-09-25T02:00:00.000Z",
+      "end": "2026-09-25T04:00:00.000Z",
+      "timezone": null,
+      "address": "Starbucks, 421 N White Mountain Rd, Show Low, AZ 85901, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 34.25343, "lon": -110.02816999999999 },
+      "hosts": ["Jeff Sauer"],
+      "cover": null
+    },
+    {
+      "id": "evt-nZvEJ5YOhs63tDW",
+      "title": "Omarchy Berlin - 2nd Boot",
+      "url": "https://luma.com/vpazcuqh",
+      "start": "2026-09-25T16:00:00.000Z",
+      "end": "2026-09-25T19:00:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": null,
+      "online": null,
+      "geo": { "lat": 52.53354489958619, "lon": 13.410093334038638 },
+      "hosts": ["chinmaya"],
       "cover": null
     },
     {
