@@ -439,21 +439,6 @@
       "cover": null
     },
     {
-      "id": "evt-ZxhK7paWWnwv9oN",
-      "title": "OMARCHY HAMBURG ⚓",
-      "url": "https://luma.com/roda2d4v",
-      "start": "2026-09-16T17:00:00.000Z",
-      "end": "2026-09-16T19:00:00.000Z",
-      "timezone": null,
-      "address": null,
-      "city": "Hamburg",
-      "country": "DE",
-      "online": null,
-      "geo": { "lat": 53.5501721, "lon": 10.0013165, "approximate": true },
-      "hosts": ["Daven Niemann"],
-      "cover": null
-    },
-    {
       "id": "evt-IdxgSQa7FCJQK66",
       "title": "Omarchy Spain 🇪🇸 - Madrid",
       "url": "https://luma.com/f8kpok4h",
@@ -1096,6 +1081,21 @@
       "online": null,
       "geo": { "lat": 8.0300284, "lon": -1.0800271, "approximate": true },
       "hosts": ["Ebenezer Nana Ofosu"],
+      "cover": null
+    },
+    {
+      "id": "evt-FlmSjVfDHvGwMCi",
+      "title": "Omarchy Stockholm Meetup - 001",
+      "url": "https://luma.com/nok9jafm",
+      "start": "2026-11-05T16:30:00.000Z",
+      "end": "2026-11-05T19:00:00.000Z",
+      "timezone": null,
+      "address": "Novatrox Consulting AB, Kungsgatan 62, 111 22 Stockholm, Sweden",
+      "city": null,
+      "country": "Sweden",
+      "online": null,
+      "geo": { "lat": 59.3344163, "lon": 18.0582937 },
+      "hosts": ["André E"],
       "cover": null
     },
     {
