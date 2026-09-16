@@ -445,11 +445,11 @@
       "start": "2026-09-16T17:00:00.000Z",
       "end": "2026-09-16T19:00:00.000Z",
       "timezone": null,
-      "address": "Attraktor e. V., Eschelsweg 4, 22767 Hamburg, Germany",
-      "city": null,
-      "country": "Germany",
+      "address": null,
+      "city": "Hamburg",
+      "country": "DE",
       "online": null,
-      "geo": { "lat": 53.5497643, "lon": 9.946426599999999 },
+      "geo": { "lat": 53.5501721, "lon": 10.0013165, "approximate": true },
       "hosts": ["Daven Niemann"],
       "cover": null
     },
@@ -646,6 +646,21 @@
       "online": null,
       "geo": { "lat": 34.25343, "lon": -110.02816999999999 },
       "hosts": ["Jeff Sauer"],
+      "cover": null
+    },
+    {
+      "id": "evt-ztgCNwuEoV32B6y",
+      "title": "Omarchy Berlin - 2nd Boot",
+      "url": "https://luma.com/t87536yp",
+      "start": "2026-09-25T16:00:00.000Z",
+      "end": "2026-09-25T19:00:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": null,
+      "online": null,
+      "geo": { "lat": 52.53136638584903, "lon": 13.410204403999495 },
+      "hosts": ["chinmaya"],
       "cover": null
     },
     {
@@ -916,6 +931,21 @@
       "online": null,
       "geo": { "lat": 9.010187499999999, "lon": 38.7810625 },
       "hosts": ["Nebiyu", "3 others"],
+      "cover": null
+    },
+    {
+      "id": "evt-ycKae6WiBSI64kk",
+      "title": "2° Omarchy Minas - Brasil",
+      "url": "https://luma.com/21bvqq4h",
+      "start": "2026-10-13T22:30:00.000Z",
+      "end": "2026-10-14T00:00:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": "BR",
+      "online": null,
+      "geo": { "lat": -10.3333333, "lon": -53.2, "approximate": true },
+      "hosts": ["Edvaldo"],
       "cover": null
     },
     {
