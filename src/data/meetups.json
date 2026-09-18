@@ -499,21 +499,6 @@
       "cover": null
     },
     {
-      "id": "evt-iqktB9uxMG2ANH5",
-      "title": "Omarchy Se Miliye!",
-      "url": "https://luma.com/f1f78l5x",
-      "start": "2026-09-19T06:30:00.000Z",
-      "end": "2026-09-19T07:30:00.000Z",
-      "timezone": null,
-      "address": "Karachi, Pakistan",
-      "city": null,
-      "country": "Pakistan",
-      "online": null,
-      "geo": { "lat": 24.860734299999997, "lon": 67.0011364 },
-      "hosts": ["Tariq Mustafa"],
-      "cover": null
-    },
-    {
       "id": "evt-9fBfsMazGFKMmsE",
       "title": "Software Freedom Day (\\w Omarchy & Ampixa)",
       "url": "https://luma.com/nq6agann",
@@ -691,6 +676,21 @@
       "online": null,
       "geo": { "lat": 23.0131338, "lon": -80.8328748, "approximate": true },
       "hosts": ["CARLOS RAFAEL"],
+      "cover": null
+    },
+    {
+      "id": "evt-iqktB9uxMG2ANH5",
+      "title": "Omarchy Se Miliye!",
+      "url": "https://luma.com/f1f78l5x",
+      "start": "2026-09-26T06:30:00.000Z",
+      "end": "2026-09-26T08:30:00.000Z",
+      "timezone": null,
+      "address": "Karachi, Pakistan",
+      "city": null,
+      "country": "Pakistan",
+      "online": null,
+      "geo": { "lat": 24.860734299999997, "lon": 67.0011364 },
+      "hosts": ["Tariq Mustafa"],
       "cover": null
     },
     {
