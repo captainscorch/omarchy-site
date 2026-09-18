@@ -1024,6 +1024,21 @@
       "cover": null
     },
     {
+      "id": "evt-e5O8vjX8ATVNE5C",
+      "title": "Omarchy Brisbane Meetup 001",
+      "url": "https://luma.com/c2gagqw1",
+      "start": "2026-10-20T07:30:00.000Z",
+      "end": "2026-10-20T10:00:00.000Z",
+      "timezone": null,
+      "address": "Tanda, Level 4/108 Wickham St, Fortitude Valley QLD 4006, Australia",
+      "city": null,
+      "country": "Australia",
+      "online": null,
+      "geo": { "lat": -27.460175699999997, "lon": 153.0314666 },
+      "hosts": ["Farzad Hayat"],
+      "cover": null
+    },
+    {
       "id": "evt-q5DFUXoGZH97A6g",
       "title": "Omarchy Taipei #1",
       "url": "https://luma.com/znfmz464",
