@@ -904,21 +904,6 @@
       "cover": null
     },
     {
-      "id": "evt-uASCAbX2odjzImy",
-      "title": "Omarchy Sydney",
-      "url": "https://luma.com/ufs7ing3",
-      "start": "2026-10-07T07:30:00.000Z",
-      "end": "2026-10-07T09:30:00.000Z",
-      "timezone": null,
-      "address": "Sydney NSW, Australia",
-      "city": null,
-      "country": "Australia",
-      "online": null,
-      "geo": { "lat": -33.8622503, "lon": 151.207684 },
-      "hosts": ["Quintin Rodgers"],
-      "cover": null
-    },
-    {
       "id": "evt-DDVudPkg0eInV1Z",
       "title": "OMARCHY NEW DELHI",
       "url": "https://luma.com/yl6s8eqp",
@@ -1126,6 +1111,21 @@
       "online": null,
       "geo": { "lat": 8.0300284, "lon": -1.0800271, "approximate": true },
       "hosts": ["Ebenezer Nana Ofosu"],
+      "cover": null
+    },
+    {
+      "id": "evt-uASCAbX2odjzImy",
+      "title": "Omarchy Sydney",
+      "url": "https://luma.com/ufs7ing3",
+      "start": "2026-11-04T08:00:00.000Z",
+      "end": "2026-11-04T10:00:00.000Z",
+      "timezone": null,
+      "address": "Sydney NSW, Australia",
+      "city": null,
+      "country": "Australia",
+      "online": null,
+      "geo": { "lat": -33.8622503, "lon": 151.207684 },
+      "hosts": ["Quintin Rodgers"],
       "cover": null
     },
     {
