@@ -520,12 +520,12 @@
       "start": "2026-09-20T16:30:00.000Z",
       "end": "2026-09-20T18:30:00.000Z",
       "timezone": null,
-      "address": "Creeds Coffee Bar, 450 Dupont St, Toronto, ON M5R 3P3, Canada",
+      "address": "New Stadium, 83 Walnut Ave, Toronto, ON M5V 2S1, Canada",
       "city": null,
       "country": "Canada",
       "online": null,
-      "geo": { "lat": 43.6735316, "lon": -79.41328039999999 },
-      "hosts": ["Andrew Clunis"],
+      "geo": { "lat": 43.641891, "lon": -79.4073275 },
+      "hosts": ["Andrew Clunis", "New"],
       "cover": null
     },
     {
