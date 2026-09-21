@@ -919,6 +919,21 @@
       "cover": null
     },
     {
+      "id": "evt-MAWomf8TvheaJuW",
+      "title": "Omarchy Aotearoa",
+      "url": "https://luma.com/q2adc09s",
+      "start": "2026-10-09T22:00:00.000Z",
+      "end": "2026-10-10T00:00:00.000Z",
+      "timezone": null,
+      "address": "Patch Cafe - Lorne St, 36 Lorne Street, Auckland CBD, Auckland 1010, New Zealand",
+      "city": null,
+      "country": "New Zealand",
+      "online": null,
+      "geo": { "lat": -36.8507499, "lon": 174.7655605 },
+      "hosts": ["Sinan NAR"],
+      "cover": null
+    },
+    {
       "id": "evt-DDVudPkg0eInV1Z",
       "title": "OMARCHY NEW DELHI",
       "url": "https://luma.com/yl6s8eqp",
@@ -1010,7 +1025,7 @@
     },
     {
       "id": "evt-zrKN452ONQBHEun",
-      "title": "#1 Omarchy Shenzhen Meetup",
+      "title": "Omarchy Shenzhen Community Meetup · Show & Tell",
       "url": "https://luma.com/j7eekqe6",
       "start": "2026-10-17T07:00:00.000Z",
       "end": "2026-10-17T12:00:00.000Z",
