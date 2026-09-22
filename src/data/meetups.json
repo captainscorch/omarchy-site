@@ -1,7 +1,7 @@
 {
   "source": "luma-feed",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-09-21",
+  "refreshed": "2026-09-22",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -930,7 +930,7 @@
       "country": "New Zealand",
       "online": null,
       "geo": { "lat": -36.8507499, "lon": 174.7655605 },
-      "hosts": ["Sinan NAR"],
+      "hosts": ["Sinan NAR", "Scott Solidloop"],
       "cover": null
     },
     {
@@ -1030,11 +1030,11 @@
       "start": "2026-10-17T07:00:00.000Z",
       "end": "2026-10-17T12:00:00.000Z",
       "timezone": null,
-      "address": "Shenzhen, Guangdong Province, China",
+      "address": null,
       "city": null,
-      "country": "China",
+      "country": null,
       "online": null,
-      "geo": { "lat": 22.5428599, "lon": 114.05955999999999 },
+      "geo": { "lat": 22.544037080506715, "lon": 114.05898865070212 },
       "hosts": ["YourChinaGuy", "OpenClaw Asia"],
       "cover": null
     },
