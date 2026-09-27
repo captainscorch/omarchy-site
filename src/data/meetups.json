@@ -724,6 +724,21 @@
       "cover": null
     },
     {
+      "id": "evt-ksSjRubuhg0mCrB",
+      "title": "繁花 Omarchy",
+      "url": "https://luma.com/svxomwan",
+      "start": "2026-09-28T05:00:00.000Z",
+      "end": "2026-09-28T09:00:00.000Z",
+      "timezone": null,
+      "address": "鸿寿坊, 6CRR+CG8, Xi Kang Lu, 长寿路 Pu Tuo Qu, Shang Hai Shi, China, 200061",
+      "city": null,
+      "country": "200061",
+      "online": null,
+      "geo": { "lat": 31.2410365, "lon": 121.4413132 },
+      "hosts": ["David Li"],
+      "cover": null
+    },
+    {
       "id": "evt-dYaJHbKm9kTEQiz",
       "title": "Omarchy Copenhagen Meetup 001",
       "url": "https://luma.com/j6wrz0ww",
@@ -781,6 +796,21 @@
       "online": null,
       "geo": { "lat": 44.5194571, "lon": -88.01780769999999 },
       "hosts": ["Jon Kinney"],
+      "cover": null
+    },
+    {
+      "id": "evt-LFPkorT4szvEmIO",
+      "title": "Omarchy: UAE",
+      "url": "https://luma.com/4b06paqg",
+      "start": "2026-09-30T12:30:00.000Z",
+      "end": "2026-09-30T13:30:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": null,
+      "online": null,
+      "geo": { "lat": 24.961952308253128, "lon": 55.15131452421572 },
+      "hosts": ["Zain Khan"],
       "cover": null
     },
     {
@@ -916,6 +946,36 @@
       "online": null,
       "geo": { "lat": 49.282975099999994, "lon": -123.11064370000001 },
       "hosts": ["Eric Chennells"],
+      "cover": null
+    },
+    {
+      "id": "evt-KdQXM1uXuFaOEcz",
+      "title": "Omarchy Baku: Tea && Compile",
+      "url": "https://luma.com/mpc173s6",
+      "start": "2026-10-09T05:30:00.000Z",
+      "end": "2026-10-09T08:30:00.000Z",
+      "timezone": null,
+      "address": "CoffeeLea Ataturk, 65 A Atatürk prospekti, Bakı, Azerbaijan",
+      "city": null,
+      "country": "Azerbaijan",
+      "online": null,
+      "geo": { "lat": 40.411318, "lon": 49.8468184 },
+      "hosts": ["Rasul Gojayev"],
+      "cover": null
+    },
+    {
+      "id": "evt-vg2EDFGF9BS2GPF",
+      "title": "Omarchy Austin",
+      "url": "https://luma.com/scf5km4i",
+      "start": "2026-10-09T21:00:00.000Z",
+      "end": "2026-10-10T01:00:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": "Austin",
+      "country": "US",
+      "online": null,
+      "geo": { "lat": 30.2711286, "lon": -97.7436995, "approximate": true },
+      "hosts": ["Kingmk3r"],
       "cover": null
     },
     {
@@ -1126,6 +1186,21 @@
       "online": null,
       "geo": { "lat": 18.4713858, "lon": -69.8918436, "approximate": true },
       "hosts": ["Cleyrol Santana Cristopher"],
+      "cover": null
+    },
+    {
+      "id": "evt-E0xJ81sqOj9SPBg",
+      "title": "OMARCHY Show Low, AZ",
+      "url": "https://luma.com/39voyojp",
+      "start": "2026-10-23T02:00:00.000Z",
+      "end": "2026-10-23T04:00:00.000Z",
+      "timezone": null,
+      "address": "Starbucks, 421 N White Mountain Rd, Show Low, AZ 85901, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 34.25343, "lon": -110.02816999999999 },
+      "hosts": ["Jeff Sauer"],
       "cover": null
     },
     {
