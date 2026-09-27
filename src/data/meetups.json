@@ -874,6 +874,21 @@
       "cover": null
     },
     {
+      "id": "evt-9maqFArsJsjvWqm",
+      "title": "Omarchy Atlanta",
+      "url": "https://luma.com/y455ahk6",
+      "start": "2026-10-01T21:30:00.000Z",
+      "end": "2026-10-01T22:30:00.000Z",
+      "timezone": null,
+      "address": "Pour Taproom-Beltline, 661 Auburn Ave NE, Atlanta, GA 30312, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 33.7562001, "lon": -84.3654657 },
+      "hosts": ["Augustin Bralley"],
+      "cover": null
+    },
+    {
       "id": "evt-1ouSFJxK78jgCia",
       "title": "Linux & Omarchy Meetup - Chennai",
       "url": "https://luma.com/8oycaeov",
@@ -1051,6 +1066,21 @@
       "online": null,
       "geo": { "lat": 52.2296756, "lon": 21.012228699999998 },
       "hosts": ["Michał Sokół", "Paweł Strzałkowski"],
+      "cover": null
+    },
+    {
+      "id": "evt-hmlk47Yisq4H3Ec",
+      "title": "Omarchy.bp #2",
+      "url": "https://luma.com/muy9nzq5",
+      "start": "2026-10-16T06:00:00.000Z",
+      "end": "2026-10-16T07:00:00.000Z",
+      "timezone": null,
+      "address": "TBA",
+      "city": null,
+      "country": "TBA",
+      "online": null,
+      "geo": null,
+      "hosts": ["Adam Haris"],
       "cover": null
     },
     {
