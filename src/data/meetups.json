@@ -874,6 +874,21 @@
       "cover": null
     },
     {
+      "id": "evt-1ouSFJxK78jgCia",
+      "title": "Linux & Omarchy Meetup - Chennai",
+      "url": "https://luma.com/8oycaeov",
+      "start": "2026-10-02T04:00:00.000Z",
+      "end": "2026-10-02T07:00:00.000Z",
+      "timezone": null,
+      "address": "Rotticious Cafe, 111, Thiruvanmiyur, beach, Valmiki Nagar, Kaveri Nagar, Kottivakkam, Chennai, Tamil Nadu 600041, India",
+      "city": null,
+      "country": "India",
+      "online": null,
+      "geo": { "lat": 12.972661599999999, "lon": 80.26589919999999 },
+      "hosts": ["Lakshmanan Palani", "Prasanth Baskar"],
+      "cover": null
+    },
+    {
       "id": "evt-7dhtEiaI22yNRQO",
       "title": "MELBOURNE",
       "url": "https://luma.com/aqd03rd5",
@@ -886,21 +901,6 @@
       "online": null,
       "geo": { "lat": -37.8142454, "lon": 144.9631732, "approximate": true },
       "hosts": ["Noah"],
-      "cover": null
-    },
-    {
-      "id": "evt-1ouSFJxK78jgCia",
-      "title": "Linux & Omarchy Meetup - Chennai",
-      "url": "https://luma.com/8oycaeov",
-      "start": "2026-10-03T04:00:00.000Z",
-      "end": "2026-10-03T07:00:00.000Z",
-      "timezone": null,
-      "address": "Writer's Café, OMR, 5/395. 1ST & 2ND FLOOR. DI & D2, Ward-195, ST.Thomas Mount block, Rajiv Gandhi Salai, Muttukkaranchavadi, Thoraipakkam, Chennai, Tamil Nadu 600097, India",
-      "city": null,
-      "country": "India",
-      "online": null,
-      "geo": { "lat": 12.930671499999999, "lon": 80.2319967 },
-      "hosts": ["Lakshmanan Palani", "Prasanth Baskar"],
       "cover": null
     },
     {
