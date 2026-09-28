@@ -859,21 +859,6 @@
       "cover": null
     },
     {
-      "id": "evt-XRYjkbpI4J5jaA2",
-      "title": "Omarchy Triangle",
-      "url": "https://luma.com/eb2l3kei",
-      "start": "2026-10-01T20:30:00.000Z",
-      "end": "2026-10-01T23:30:00.000Z",
-      "timezone": null,
-      "address": "Ponysaurus Brewing Co., 219 Hood St, Durham, NC 27701, USA",
-      "city": null,
-      "country": "USA",
-      "online": null,
-      "geo": { "lat": 35.989584199999996, "lon": -78.8952496 },
-      "hosts": ["jd"],
-      "cover": null
-    },
-    {
       "id": "evt-9maqFArsJsjvWqm",
       "title": "Omarchy Atlanta",
       "url": "https://luma.com/y455ahk6",
@@ -886,6 +871,21 @@
       "online": null,
       "geo": { "lat": 33.7562001, "lon": -84.3654657 },
       "hosts": ["Augustin Bralley"],
+      "cover": null
+    },
+    {
+      "id": "evt-XRYjkbpI4J5jaA2",
+      "title": "Omarchy Triangle",
+      "url": "https://luma.com/eb2l3kei",
+      "start": "2026-10-01T22:00:00.000Z",
+      "end": "2026-10-02T01:00:00.000Z",
+      "timezone": null,
+      "address": "The Daily, 108 E Main St Suite 101, Durham, NC 27701, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 35.9947478, "lon": -78.90044879999999 },
+      "hosts": ["jd"],
       "cover": null
     },
     {
