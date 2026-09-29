@@ -784,21 +784,6 @@
       "cover": null
     },
     {
-      "id": "evt-VjuPq46FI93haPG",
-      "title": "Omarchy Meetup - Green Bay",
-      "url": "https://luma.com/eoxdjbog",
-      "start": "2026-09-29T23:30:00.000Z",
-      "end": "2026-09-30T02:30:00.000Z",
-      "timezone": null,
-      "address": "The Depot Green Bay, 200 Dousman St, Green Bay, WI 54303, USA",
-      "city": null,
-      "country": "USA",
-      "online": null,
-      "geo": { "lat": 44.5194571, "lon": -88.01780769999999 },
-      "hosts": ["Jon Kinney"],
-      "cover": null
-    },
-    {
       "id": "evt-LFPkorT4szvEmIO",
       "title": "Omarchy: UAE",
       "url": "https://luma.com/4b06paqg",
@@ -931,6 +916,21 @@
       "online": null,
       "geo": { "lat": 9.010187499999999, "lon": 38.7810625 },
       "hosts": ["Nebiyu", "3 others"],
+      "cover": null
+    },
+    {
+      "id": "evt-VjuPq46FI93haPG",
+      "title": "Omarchy Meetup - Green Bay",
+      "url": "https://luma.com/eoxdjbog",
+      "start": "2026-10-06T23:30:00.000Z",
+      "end": "2026-10-07T02:30:00.000Z",
+      "timezone": null,
+      "address": "The Depot Green Bay, 200 Dousman St, Green Bay, WI 54303, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 44.5194571, "lon": -88.01780769999999 },
+      "hosts": ["Jon Kinney"],
       "cover": null
     },
     {
@@ -1126,6 +1126,36 @@
       "online": null,
       "geo": { "lat": 22.544037080506715, "lon": 114.05898865070212 },
       "hosts": ["YourChinaGuy", "OpenClaw Asia"],
+      "cover": null
+    },
+    {
+      "id": "evt-3ddSrG9FqtNbJI2",
+      "title": "Omarchy Riga Meetup",
+      "url": "https://luma.com/nl75312o",
+      "start": "2026-10-17T11:00:00.000Z",
+      "end": "2026-10-17T14:00:00.000Z",
+      "timezone": null,
+      "address": "Rocket Bean Roastery, Miera iela 29/31, Centra rajons, Rīga, LV-1001, Latvia",
+      "city": null,
+      "country": "Latvia",
+      "online": null,
+      "geo": { "lat": 56.9638499, "lon": 24.131791999999997 },
+      "hosts": ["The Nobody"],
+      "cover": null
+    },
+    {
+      "id": "evt-EW5sNNCMUAalvAn",
+      "title": "Omarchy Meetup MX: EN ESPAÑOL",
+      "url": "https://luma.com/szhjc18p",
+      "start": "2026-10-17T19:00:00.000Z",
+      "end": "2026-10-17T20:30:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": null,
+      "online": null,
+      "geo": null,
+      "hosts": ["Gabriel Cerdio"],
       "cover": null
     },
     {
