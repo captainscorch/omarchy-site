@@ -1,7 +1,7 @@
 {
   "source": "luma-feed",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-09-28",
+  "refreshed": "2026-09-29",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -814,21 +814,6 @@
       "cover": null
     },
     {
-      "id": "evt-2h0vxlgK0HC9Weh",
-      "title": "Omarchy DFW 001: Get Set Up, Show & Tell, and Dig In",
-      "url": "https://luma.com/pj5yrzgv",
-      "start": "2026-09-30T23:00:00.000Z",
-      "end": "2026-10-01T00:00:00.000Z",
-      "timezone": null,
-      "address": "Cozby Library and Community Commons, 177 N Heartz Rd, Coppell, TX 75019, USA",
-      "city": null,
-      "country": "USA",
-      "online": null,
-      "geo": { "lat": 32.9735474, "lon": -96.9896096 },
-      "hosts": ["Matt Gleason"],
-      "cover": null
-    },
-    {
       "id": "evt-mhGcu1eA72jAUc6",
       "title": "Omarchy SF",
       "url": "https://luma.com/xsdfbbvq",
@@ -1069,17 +1054,32 @@
       "cover": null
     },
     {
+      "id": "evt-2h0vxlgK0HC9Weh",
+      "title": "Omarchy DFW 001: Get Set Up, Show & Tell, and Dig In",
+      "url": "https://luma.com/pj5yrzgv",
+      "start": "2026-10-15T23:00:00.000Z",
+      "end": "2026-10-16T00:00:00.000Z",
+      "timezone": null,
+      "address": "Dallas, TX, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 32.7766642, "lon": -96.79698789999999 },
+      "hosts": ["Matt Gleason"],
+      "cover": null
+    },
+    {
       "id": "evt-hmlk47Yisq4H3Ec",
       "title": "Omarchy.bp #2",
       "url": "https://luma.com/muy9nzq5",
       "start": "2026-10-16T06:00:00.000Z",
       "end": "2026-10-16T07:00:00.000Z",
       "timezone": null,
-      "address": "TBA",
+      "address": "Starbucks Gozsdu, Budapest, Király u. 22, 1061 Hungary",
       "city": null,
-      "country": "TBA",
+      "country": "1061 Hungary",
       "online": null,
-      "geo": null,
+      "geo": { "lat": 47.499353299999996, "lon": 19.058367699999998 },
       "hosts": ["Adam Haris"],
       "cover": null
     },
