@@ -1045,11 +1045,11 @@
       "start": "2026-10-14T16:00:00.000Z",
       "end": "2026-10-14T19:00:00.000Z",
       "timezone": null,
-      "address": "Warsaw, Poland",
+      "address": "Rondo ONZ 1, 00-124 Warszawa, Poland",
       "city": null,
       "country": "Poland",
       "online": null,
-      "geo": { "lat": 52.2296756, "lon": 21.012228699999998 },
+      "geo": { "lat": 52.2329478, "lon": 20.999236000000003 },
       "hosts": ["Michał Sokół", "Paweł Strzałkowski"],
       "cover": null
     },
