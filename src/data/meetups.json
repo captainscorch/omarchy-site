@@ -1,7 +1,7 @@
 {
   "source": "luma-feed",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-09-30",
+  "refreshed": "2026-10-01",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -1180,12 +1180,12 @@
       "start": "2026-10-20T11:00:00.000Z",
       "end": "2026-10-20T12:30:00.000Z",
       "timezone": null,
-      "address": "Taipei City, Taiwan",
+      "address": null,
       "city": null,
-      "country": "Taiwan",
+      "country": null,
       "online": null,
-      "geo": { "lat": 25.0329636, "lon": 121.56542680000001 },
-      "hosts": ["Yung Chen"],
+      "geo": { "lat": 25.03418743235902, "lon": 121.56568719696187 },
+      "hosts": ["Yung Chen", "Johnson Lu"],
       "cover": null
     },
     {
