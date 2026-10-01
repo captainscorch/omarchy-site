@@ -1197,9 +1197,9 @@
       "timezone": null,
       "address": null,
       "city": null,
-      "country": "QA",
+      "country": null,
       "online": null,
-      "geo": { "lat": 25.3108807, "lon": 51.5081812, "approximate": true },
+      "geo": { "lat": 25.38548198737363, "lon": 51.485550266834316 },
       "hosts": ["Omar Almagharebi", "Hadi Hamoud"],
       "cover": null
     },
