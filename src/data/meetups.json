@@ -889,21 +889,6 @@
       "cover": null
     },
     {
-      "id": "evt-AwFMh6wimj0ZBxW",
-      "title": "Omarchy Patna",
-      "url": "https://luma.com/pfzasqyq",
-      "start": "2026-10-03T12:30:00.000Z",
-      "end": "2026-10-03T15:30:00.000Z",
-      "timezone": null,
-      "address": null,
-      "city": null,
-      "country": null,
-      "online": null,
-      "geo": { "lat": 25.616548943853218, "lon": 85.14330693960551 },
-      "hosts": ["Pulkit Krishna"],
-      "cover": null
-    },
-    {
       "id": "evt-VjuPq46FI93haPG",
       "title": "Omarchy Meetup - Green Bay",
       "url": "https://luma.com/eoxdjbog",
@@ -985,12 +970,27 @@
       "start": "2026-10-10T03:30:00.000Z",
       "end": "2026-10-10T10:30:00.000Z",
       "timezone": null,
+      "address": "ThoughtWorks Technologies, International Tech Park, Sector 59, Gurugram, Haryana 122011, India",
+      "city": null,
+      "country": "India",
+      "online": null,
+      "geo": { "lat": 28.4073057, "lon": 77.11876319999999 },
+      "hosts": ["Aryan Jangra"],
+      "cover": null
+    },
+    {
+      "id": "evt-AwFMh6wimj0ZBxW",
+      "title": "Omarchy Patna",
+      "url": "https://luma.com/pfzasqyq",
+      "start": "2026-10-10T12:30:00.000Z",
+      "end": "2026-10-10T15:30:00.000Z",
+      "timezone": null,
       "address": null,
       "city": null,
       "country": null,
       "online": null,
-      "geo": { "lat": 28.4085765044744, "lon": 77.12038818121123 },
-      "hosts": ["Aryan Jangra"],
+      "geo": { "lat": 25.616548943853218, "lon": 85.14330693960551 },
+      "hosts": ["Pulkit Krishna"],
       "cover": null
     },
     {
