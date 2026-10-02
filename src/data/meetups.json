@@ -1,7 +1,7 @@
 {
   "source": "luma-feed",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-10-01",
+  "refreshed": "2026-10-02",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -904,21 +904,6 @@
       "cover": null
     },
     {
-      "id": "evt-lNdN45JFBUoPvbk",
-      "title": "Omarchy ETHIOPIA",
-      "url": "https://luma.com/zh5jv195",
-      "start": "2026-10-03T15:30:00.000Z",
-      "end": "2026-10-03T16:30:00.000Z",
-      "timezone": null,
-      "address": "2Q6J+3C, Addis Ababa, Ethiopia",
-      "city": null,
-      "country": "Ethiopia",
-      "online": null,
-      "geo": { "lat": 9.010187499999999, "lon": 38.7810625 },
-      "hosts": ["Nebiyu", "3 others"],
-      "cover": null
-    },
-    {
       "id": "evt-VjuPq46FI93haPG",
       "title": "Omarchy Meetup - Green Bay",
       "url": "https://luma.com/eoxdjbog",
@@ -1141,6 +1126,21 @@
       "online": null,
       "geo": { "lat": 56.9638499, "lon": 24.131791999999997 },
       "hosts": ["The Nobody"],
+      "cover": null
+    },
+    {
+      "id": "evt-lNdN45JFBUoPvbk",
+      "title": "Omarchy ETHIOPIA",
+      "url": "https://luma.com/zh5jv195",
+      "start": "2026-10-17T11:00:00.000Z",
+      "end": "2026-10-17T15:00:00.000Z",
+      "timezone": null,
+      "address": "2Q6J+3C, Addis Ababa, Ethiopia",
+      "city": null,
+      "country": "Ethiopia",
+      "online": null,
+      "geo": { "lat": 9.010187499999999, "lon": 38.7810625 },
+      "hosts": ["Nebiyu", "3 others"],
       "cover": null
     },
     {
