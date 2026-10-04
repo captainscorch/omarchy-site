@@ -1,7 +1,7 @@
 {
   "source": "luma-feed",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-10-03",
+  "refreshed": "2026-10-04",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -960,7 +960,7 @@
       "country": "New Zealand",
       "online": null,
       "geo": { "lat": -36.8507499, "lon": 174.7655605 },
-      "hosts": ["Sinan NAR", "Scott Solidloop"],
+      "hosts": ["Sinan NAR", "Scott A"],
       "cover": null
     },
     {
