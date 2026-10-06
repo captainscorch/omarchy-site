@@ -1,7 +1,7 @@
 {
   "source": "luma-feed",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-10-05",
+  "refreshed": "2026-10-06",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -889,6 +889,21 @@
       "cover": null
     },
     {
+      "id": "evt-9SW4XA7ufMZCqmL",
+      "title": "Omarchy Brasil #003: Omarchy + Nix: Do Código ao Sistema",
+      "url": "https://luma.com/ig3ig1f5",
+      "start": "2026-10-06T22:30:00.000Z",
+      "end": "2026-10-07T00:00:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": "BR",
+      "online": null,
+      "geo": { "lat": -10.3333333, "lon": -53.2, "approximate": true },
+      "hosts": ["Guilherme Monteiro"],
+      "cover": null
+    },
+    {
       "id": "evt-VjuPq46FI93haPG",
       "title": "Omarchy Meetup - Green Bay",
       "url": "https://luma.com/eoxdjbog",
@@ -916,6 +931,21 @@
       "online": null,
       "geo": { "lat": 49.282975099999994, "lon": -123.11064370000001 },
       "hosts": ["Eric Chennells"],
+      "cover": null
+    },
+    {
+      "id": "evt-SBgGOcbWy8KD2hF",
+      "title": "Omarchy Zürich: First Online Meetup",
+      "url": "https://luma.com/t0yoatrm",
+      "start": "2026-10-07T17:00:00.000Z",
+      "end": "2026-10-07T18:00:00.000Z",
+      "timezone": null,
+      "address": "Zürich, Switzerland",
+      "city": null,
+      "country": "Switzerland",
+      "online": null,
+      "geo": { "lat": 47.3768866, "lon": 8.541694 },
+      "hosts": ["Alexander Holbreich"],
       "cover": null
     },
     {
@@ -1024,6 +1054,21 @@
       "cover": null
     },
     {
+      "id": "calev-asFaAT1FhYo2AnP",
+      "title": "Omarchy Tokyo Night",
+      "url": "https://luma.com/omarchy",
+      "start": "2026-10-14T10:30:00.000Z",
+      "end": "2026-10-14T12:30:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": null,
+      "online": null,
+      "geo": { "lat": 35.6566906, "lon": 139.7593867 },
+      "hosts": [],
+      "cover": null
+    },
+    {
       "id": "evt-SwexecbZSjNcHvk",
       "title": "OMARCHY WARSAW",
       "url": "https://luma.com/ga4nmugm",
@@ -1036,6 +1081,36 @@
       "online": null,
       "geo": { "lat": 52.2329478, "lon": 20.999236000000003 },
       "hosts": ["Michał Sokół", "Paweł Strzałkowski"],
+      "cover": null
+    },
+    {
+      "id": "evt-P1eGvzI9IGTUv8s",
+      "title": "Omarchy Istanbul Meetup 001",
+      "url": "https://luma.com/omarchy-istanbul",
+      "start": "2026-10-15T16:00:00.000Z",
+      "end": "2026-10-15T19:00:00.000Z",
+      "timezone": null,
+      "address": "Komünite Space, Radisson Collection Hotel, Ayazağa, Azerbaycan Cd. No:3A, 34475 Sarıyer/İstanbul, Türkiye",
+      "city": null,
+      "country": "Türkiye",
+      "online": null,
+      "geo": { "lat": 41.1085595, "lon": 28.986573300000003 },
+      "hosts": ["Komünite"],
+      "cover": null
+    },
+    {
+      "id": "evt-7RaevM3wmKYKOW1",
+      "title": "Omarchy Atlanta",
+      "url": "https://luma.com/0esy9wrp",
+      "start": "2026-10-15T21:30:00.000Z",
+      "end": "2026-10-15T22:30:00.000Z",
+      "timezone": null,
+      "address": "Pour Taproom-Beltline, 661 Auburn Ave NE, Atlanta, GA 30312, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 33.7562001, "lon": -84.3654657 },
+      "hosts": ["Augustin Bralley"],
       "cover": null
     },
     {
@@ -1234,6 +1309,21 @@
       "cover": null
     },
     {
+      "id": "evt-L8yDpMHRCzOsQT6",
+      "title": "Jacksonville Omarchy Meetup",
+      "url": "https://luma.com/qnsm7fwq",
+      "start": "2026-10-22T21:30:00.000Z",
+      "end": "2026-10-23T00:30:00.000Z",
+      "timezone": null,
+      "address": "Higher Pixels, 5133 San Jose Blvd, Jacksonville, FL 32207, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 30.264993299999997, "lon": -81.64671299999999 },
+      "hosts": ["John Pollard"],
+      "cover": null
+    },
+    {
       "id": "evt-bwIotEyWDuDPayu",
       "title": "DOmarchy 001 - Omarchy Santo Domingo 🇩🇴",
       "url": "https://luma.com/abahralp",
@@ -1294,6 +1384,21 @@
       "cover": null
     },
     {
+      "id": "evt-XJ3VtDVg2YLvHeE",
+      "title": "Omarchy SF",
+      "url": "https://luma.com/7c2wohwf",
+      "start": "2026-11-05T01:00:00.000Z",
+      "end": "2026-11-05T04:00:00.000Z",
+      "timezone": null,
+      "address": "Cloudflare, 101 Townsend St, San Francisco, CA 94107, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 37.7803014, "lon": -122.39072150000001 },
+      "hosts": ["Steve Derico"],
+      "cover": null
+    },
+    {
       "id": "evt-FlmSjVfDHvGwMCi",
       "title": "Omarchy Stockholm Meetup - 001",
       "url": "https://luma.com/nok9jafm",
@@ -1321,6 +1426,21 @@
       "online": null,
       "geo": { "lat": 55.6084981, "lon": 12.998572099999999 },
       "hosts": ["Ola Cewers"],
+      "cover": null
+    },
+    {
+      "id": "evt-MwxCpSJVFMDYrGX",
+      "title": "Omarchy Moscow Meetup",
+      "url": "https://luma.com/q6hzbcen",
+      "start": "2026-12-05T09:00:00.000Z",
+      "end": "2026-12-05T11:00:00.000Z",
+      "timezone": null,
+      "address": "55.861566, 37.549861",
+      "city": null,
+      "country": "37.549861",
+      "online": null,
+      "geo": { "lat": 55.625578, "lon": 37.6063916, "approximate": true },
+      "hosts": ["samohosting"],
       "cover": null
     }
   ]
