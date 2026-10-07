@@ -1,7 +1,7 @@
 {
   "source": "luma-feed",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-10-06",
+  "refreshed": "2026-10-07",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -889,21 +889,6 @@
       "cover": null
     },
     {
-      "id": "evt-9SW4XA7ufMZCqmL",
-      "title": "Omarchy Brasil #003: Omarchy + Nix: Do Código ao Sistema",
-      "url": "https://luma.com/ig3ig1f5",
-      "start": "2026-10-06T22:30:00.000Z",
-      "end": "2026-10-07T00:00:00.000Z",
-      "timezone": null,
-      "address": null,
-      "city": null,
-      "country": "BR",
-      "online": null,
-      "geo": { "lat": -10.3333333, "lon": -53.2, "approximate": true },
-      "hosts": ["Guilherme Monteiro"],
-      "cover": null
-    },
-    {
       "id": "evt-3xFi2ywmmZyyBPe",
       "title": "Omarchy Vancouver",
       "url": "https://luma.com/ncar2zld",
@@ -976,6 +961,21 @@
       "online": null,
       "geo": { "lat": -36.8507499, "lon": 174.7655605 },
       "hosts": ["Sinan NAR", "Scott A"],
+      "cover": null
+    },
+    {
+      "id": "evt-9SW4XA7ufMZCqmL",
+      "title": "Omarchy Brasil #003: Omarchy + Nix: Do Código ao Sistema",
+      "url": "https://luma.com/ig3ig1f5",
+      "start": "2026-10-09T22:30:00.000Z",
+      "end": "2026-10-10T00:00:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": null,
+      "country": "BR",
+      "online": null,
+      "geo": { "lat": -10.3333333, "lon": -53.2, "approximate": true },
+      "hosts": ["Guilherme Monteiro"],
       "cover": null
     },
     {
@@ -1420,11 +1420,11 @@
       "start": "2026-12-05T09:00:00.000Z",
       "end": "2026-12-05T11:00:00.000Z",
       "timezone": null,
-      "address": "55.861566, 37.549861",
+      "address": "Dmitrovskoye Hwy, 81, Moskva, Russia, 127238",
       "city": null,
-      "country": "37.549861",
+      "country": "127238",
       "online": null,
-      "geo": { "lat": 55.625578, "lon": 37.6063916, "approximate": true },
+      "geo": { "lat": 55.8618506, "lon": 37.5495024 },
       "hosts": ["samohosting"],
       "cover": null
     }
