@@ -45,7 +45,7 @@
       "country": null,
       "online": null,
       "geo": { "lat": 52.22074319028438, "lon": 21.01437955675082 },
-      "hosts": ["Warsaw International"],
+      "hosts": ["0xSero"],
       "cover": null
     },
     {
@@ -944,7 +944,7 @@
       "city": "Austin",
       "country": "TX 78702",
       "online": null,
-      "geo": { "lat": 30.2711286, "lon": -97.7436995, "approximate": true },
+      "geo": { "lat": 30.2649261, "lon": -97.7474086, "approximate": true },
       "hosts": ["Kingmk3r"],
       "cover": null
     },
