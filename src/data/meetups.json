@@ -1429,6 +1429,21 @@
       "cover": null
     },
     {
+      "id": "evt-GEqTRvnJhkug3Ca",
+      "title": "Omarchy Northern Utah",
+      "url": "https://luma.com/nm3cmule",
+      "start": "2026-11-11T02:00:00.000Z",
+      "end": "2026-11-11T03:00:00.000Z",
+      "timezone": null,
+      "address": "1875 S 2000 W, Syracuse, UT 84075, USA",
+      "city": null,
+      "country": "USA",
+      "online": null,
+      "geo": { "lat": 41.0866942, "lon": -112.0642882 },
+      "hosts": ["Spencer Owen"],
+      "cover": null
+    },
+    {
       "id": "evt-SrfYTm4gfXfmvv3",
       "title": "Omarchy Malmö Meetup 001",
       "url": "https://luma.com/774wosun",
