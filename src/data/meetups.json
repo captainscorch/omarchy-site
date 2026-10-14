@@ -1084,21 +1084,6 @@
       "cover": null
     },
     {
-      "id": "evt-P1eGvzI9IGTUv8s",
-      "title": "Omarchy Istanbul Meetup 001",
-      "url": "https://luma.com/omarchy-istanbul",
-      "start": "2026-10-15T16:00:00.000Z",
-      "end": "2026-10-15T19:00:00.000Z",
-      "timezone": null,
-      "address": "Komünite Space, Radisson Collection Hotel, Ayazağa, Azerbaycan Cd. No:3A, 34475 Sarıyer/İstanbul, Türkiye",
-      "city": null,
-      "country": "Türkiye",
-      "online": null,
-      "geo": { "lat": 41.1085595, "lon": 28.986573300000003 },
-      "hosts": ["Komünite"],
-      "cover": null
-    },
-    {
       "id": "evt-7RaevM3wmKYKOW1",
       "title": "Omarchy Atlanta",
       "url": "https://luma.com/0esy9wrp",
@@ -1471,6 +1456,21 @@
       "online": null,
       "geo": { "lat": 55.6084981, "lon": 12.998572099999999 },
       "hosts": ["Ola Cewers"],
+      "cover": null
+    },
+    {
+      "id": "evt-R1T3FoigSaT4BA6",
+      "title": "Omarchy London Meetup 002",
+      "url": "https://luma.com/fyb1dq1k",
+      "start": "2026-11-19T18:00:00.000Z",
+      "end": "2026-11-19T20:00:00.000Z",
+      "timezone": null,
+      "address": "Wise, 65 Clifton St, London EC2A 4JE, UK",
+      "city": null,
+      "country": "UK",
+      "online": null,
+      "geo": { "lat": 51.5223258, "lon": -0.0834298 },
+      "hosts": ["Itunu Abidoye"],
       "cover": null
     },
     {
