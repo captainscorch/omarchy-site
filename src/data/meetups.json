@@ -1,7 +1,7 @@
 {
   "source": "luma-feed",
   "calendar": "https://luma.com/omarchy",
-  "refreshed": "2026-10-13",
+  "refreshed": "2026-10-14",
   "events": [
     {
       "id": "evt-YDyCEwwpiMzSFDB",
@@ -1426,6 +1426,21 @@
       "online": null,
       "geo": { "lat": 33.0259, "lon": -96.8837255 },
       "hosts": ["Matt Gleason"],
+      "cover": null
+    },
+    {
+      "id": "evt-fOBbHL7vGIoNpHP",
+      "title": "3 Omarchy - Minas Brasil",
+      "url": "https://luma.com/s6l8z34p",
+      "start": "2026-11-10T22:00:00.000Z",
+      "end": "2026-11-10T23:00:00.000Z",
+      "timezone": null,
+      "address": null,
+      "city": "Belo Horizonte",
+      "country": "BR",
+      "online": null,
+      "geo": { "lat": -19.91753, "lon": -43.9900546, "approximate": true },
+      "hosts": ["Edvaldo"],
       "cover": null
     },
     {
